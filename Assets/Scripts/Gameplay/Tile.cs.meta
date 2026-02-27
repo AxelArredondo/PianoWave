@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a838d19983d1e434e9384fe5d215cfd4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tileRenderer: {fileID: 2442626460484824673, guid: efb240f2a04f001429ffe1fb5234257b, type: 3}
+  - hitParticlePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
