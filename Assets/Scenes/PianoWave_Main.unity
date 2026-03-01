@@ -326,16 +326,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneGuides
   laneLayout: {fileID: 165593719}
-  tilePrefabForWidth: {fileID: 7661985781427285993, guid: efb240f2a04f001429ffe1fb5234257b, type: 3}
+  cam: {fileID: 374145785}
+  hitLine: {fileID: 933813709}
   showGuides: 1
-  guideTopPadding: 0.5
-  guideBottomPadding: 0.5
-  guideThicknessPixels: 3
   guideColor: {r: 1, g: 1, b: 1, a: 0.25}
   guideSortingOrder: 1000
   guideSortingLayerName: 1000
-  usePrefabSpriteWidth: 1
-  tileWidthWorldOverride: 1
+  guideThicknessPixels: 3
+  stopGuidesAtHitLine: 1
+  topPaddingWorld: 0.5
+  bottomPaddingWorld: 0.5
+  edgeInsetWorld: 0
 --- !u!1 &219920292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,7 +1956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3027cc806898a8a42897c4f4dd1d0306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  cam: {fileID: 0}
+  cam: {fileID: 374145785}
   coverScreen: 1
   zPosition: -6
 --- !u!212 &1495855744

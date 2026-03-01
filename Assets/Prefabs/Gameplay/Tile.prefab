@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   baseSpeed: 3
-  perfectWindow: 0.15
-  goodWindow: 0.6
+  perfectPercentOfTileHeight: 0.12
+  goodPercentOfTileHeight: 1
   tileRenderer: {fileID: 6654271443128489635}
   tileColors:
   - {r: 0.20784314, g: 0.8784314, b: 1, a: 1}
@@ -150,8 +150,10 @@ MonoBehaviour:
   - {r: 0.9490196, g: 1, b: 1, a: 1}
   hitDestroyDelay: 0.08
   hitScalePerfect: 1.25
-  hitScaleGood: 1
-  hitParticlePrefab: {fileID: 0}
+  hitScaleGood: 1.15
+  hitParticlePrefab: {fileID: 4778399023582427322, guid: f65a736654ce6354eb53a94428db24c2, type: 3}
+  spawnParticlesAtHitLine: 1
+  particleLifetime: 1
 --- !u!60 &-8630659861093947378
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -198,10 +200,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: -0.026144192, y: 1.1655524}
+      - {x: -0.6286361, y: 1.1543665}
+      - {x: -0.6230433, y: -1.1487736}
+      - {x: 0.0018201545, y: -1.1711451}
+      - {x: 0.634229, y: -1.1543665}
+      - {x: 0.634229, y: 1.1543665}
   m_UseDelaunayMesh: 1
 --- !u!1 &8924995762395609676
 GameObject:
