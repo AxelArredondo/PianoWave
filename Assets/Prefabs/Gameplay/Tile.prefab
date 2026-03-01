@@ -150,7 +150,7 @@ MonoBehaviour:
   - {r: 0.9490196, g: 1, b: 1, a: 1}
   hitDestroyDelay: 0.08
   hitScalePerfect: 1.25
-  hitScaleGood: 1.12
+  hitScaleGood: 1
   hitParticlePrefab: {fileID: 0}
 --- !u!60 &-8630659861093947378
 PolygonCollider2D:

@@ -58,7 +58,7 @@ public class HitLineFitter : MonoBehaviour
 
         if (limitWidthToTileArea && laneGuides != null)
         {
-            targetWidthWorld = Mathf.Max(0.1f, laneGuides.RightEdgeWorld - laneGuides.LeftEdgeWorld);
+            targetWidthWorld = laneGuides.RightEdgeWorld - laneGuides.LeftEdgeWorld;
         }
         else
         {

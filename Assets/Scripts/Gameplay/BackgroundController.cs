@@ -20,9 +20,13 @@ public class BackgroundController : MonoBehaviour
         CacheRes();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (Screen.width != lastW || Screen.height != lastH)
+        if (cam == null) return;
+
+        if (Screen.width != lastW ||
+            Screen.height != lastH ||
+            !Mathf.Approximately(cam.orthographicSize * 2f, sr.bounds.size.y))
         {
             FitToCamera();
             CacheRes();
@@ -37,25 +41,26 @@ public class BackgroundController : MonoBehaviour
 
     void FitToCamera()
     {
-        if (sr == null || sr.sprite == null || cam == null || !cam.orthographic) return;
+        if (sr == null || sr.sprite == null || cam == null || !cam.orthographic)
+            return;
 
-        float worldScreenHeight = cam.orthographicSize * 2f;
-        float worldScreenWidth = worldScreenHeight * cam.aspect;
+        // Camera visible size in world units
+        float worldHeight = cam.orthographicSize * 2f;
+        float worldWidth = worldHeight * cam.aspect;
 
+        // Sprite native size (at scale 1)
         Vector2 spriteSize = sr.sprite.bounds.size;
 
-        float scaleX = worldScreenWidth / spriteSize.x;
-        float scaleY = worldScreenHeight / spriteSize.y;
+        // Scale independently in X and Y so it matches camera exactly
+        float scaleX = worldWidth / spriteSize.x;
+        float scaleY = worldHeight / spriteSize.y;
 
-        float scale = coverScreen ? Mathf.Max(scaleX, scaleY) : Mathf.Min(scaleX, scaleY);
+        // Exact match (no zoom crop)
+        transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
-        transform.localScale = new Vector3(scale, scale, 1f);
-
-        Vector3 p = transform.position;
-        p.x = 0f;
-        p.y = 0f;
-        p.z = zPosition;
-        transform.position = p;
+        // Always center it on camera
+        Vector3 camPos = cam.transform.position;
+        transform.position = new Vector3(camPos.x, camPos.y, zPosition);
     }
 
     void OnEnable()

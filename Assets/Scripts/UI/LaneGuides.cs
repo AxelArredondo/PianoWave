@@ -4,38 +4,41 @@ public class LaneGuides : MonoBehaviour
 {
     [Header("Refs")]
     public LaneLayout laneLayout;
+    public Camera cam;
 
-    [Tooltip("A prefab OR scene object that has the same SpriteRenderer as your falling tiles.")]
-    public GameObject tilePrefabForWidth;
+    [Tooltip("Optional: assign your hitline Transform so guides can stop there.")]
+    public Transform hitLine;
 
     [Header("Visuals")]
     public bool showGuides = true;
-    public float guideTopPadding = 0.5f;
-    public float guideBottomPadding = 0.5f;
-    public float guideThicknessPixels = 3f;
     public Color guideColor = new Color(1f, 1f, 1f, 0.25f);
     public int guideSortingOrder = 1000;
     public string guideSortingLayerName = "";
 
-    [Header("Width matching")]
-    [Tooltip("If your tiles are scaled dynamically, set this to the typical tile width in world units instead.")]
-    public bool usePrefabSpriteWidth = true;
+    [Header("Guide size")]
+    public float guideThicknessPixels = 3f;
 
-    [Tooltip("Fallback/override: tile width in world units (used if prefab missing or usePrefabSpriteWidth=false).")]
-    public float tileWidthWorldOverride = 1.0f;
+    [Tooltip("If OFF: guides go to bottom of camera view. If ON: guides stop at hitline Y.")]
+    public bool stopGuidesAtHitLine = true;
 
-    // Public results you can use elsewhere (HitLineFitter)
+    public float topPaddingWorld = 0.5f;
+    public float bottomPaddingWorld = 0.5f;
+
+    [Header("Alignment fine-tune")]
+    [Tooltip("Positive shrinks inward, negative expands outward. Use this to compensate for bevel/transparent padding.")]
+    public float edgeInsetWorld = 0.00f;
+
+    // Public boundaries for HitLineFitter
     public float LeftEdgeWorld { get; private set; }
     public float RightEdgeWorld { get; private set; }
 
-    Camera cam;
     GameObject[] lines;
     int lastW, lastH;
     float lastOrtho;
 
     void Awake()
     {
-        cam = Camera.main;
+        if (cam == null) cam = Camera.main;
         if (laneLayout == null) laneLayout = GetComponent<LaneLayout>();
     }
 
@@ -48,14 +51,22 @@ public class LaneGuides : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!showGuides) return;
+        if (!showGuides) { SetActive(false); return; }
+        SetActive(true);
+
         if (cam == null) cam = Camera.main;
 
+        // Update if resolution or camera size changes (camera scaler)
         if (Screen.width != lastW || Screen.height != lastH || !Mathf.Approximately(cam.orthographicSize, lastOrtho))
         {
             RebuildIfNeeded();
             UpdateGuides();
             Cache();
+        }
+        else
+        {
+            // Still update Y range if hitline moves
+            UpdateGuides();
         }
     }
 
@@ -66,14 +77,22 @@ public class LaneGuides : MonoBehaviour
         lastOrtho = cam != null ? cam.orthographicSize : 0f;
     }
 
+    void SetActive(bool active)
+    {
+        if (lines == null) return;
+        for (int i = 0; i < lines.Length; i++)
+            if (lines[i] != null && lines[i].activeSelf != active)
+                lines[i].SetActive(active);
+    }
+
     void RebuildIfNeeded()
     {
-        if (!showGuides || laneLayout == null || laneLayout.lanes == null) return;
+        if (laneLayout == null || laneLayout.lanes == null) return;
 
         int laneCount = laneLayout.lanes.Length;
         if (laneCount < 1) return;
 
-        int boundaryCount = laneCount + 1; // 4 lanes => 5 boundaries
+        int boundaryCount = laneCount + 1; // 4 lanes -> 5 boundary lines
 
         if (lines != null && lines.Length == boundaryCount) return;
 
@@ -105,21 +124,6 @@ public class LaneGuides : MonoBehaviour
         }
     }
 
-    float GetTileWidthWorld()
-    {
-        if (usePrefabSpriteWidth && tilePrefabForWidth != null)
-        {
-            var sr = tilePrefabForWidth.GetComponentInChildren<SpriteRenderer>();
-            if (sr != null && sr.sprite != null)
-            {
-                // bounds.size includes prefab scale
-                return sr.bounds.size.x;
-            }
-        }
-
-        return Mathf.Max(0.0001f, tileWidthWorldOverride);
-    }
-
     void UpdateGuides()
     {
         if (!showGuides || lines == null || cam == null || laneLayout == null || laneLayout.lanes == null) return;
@@ -128,25 +132,33 @@ public class LaneGuides : MonoBehaviour
         int laneCount = laneLayout.lanes.Length;
         if (laneCount < 1) return;
 
-        float tileW = GetTileWidthWorld();
+        // Use the TRUE tile width (what spawner decided), not prefab sprite bounds
+        float tileW = Mathf.Max(0.0001f, TileSizing.CurrentTileWidthWorld);
         float halfTile = tileW * 0.5f;
 
-        // Compute boundary positions based on lane centers + tile half width
         float leftMostCenterX = laneLayout.lanes[0].position.x;
         float rightMostCenterX = laneLayout.lanes[laneCount - 1].position.x;
 
-        LeftEdgeWorld = leftMostCenterX - halfTile;
-        RightEdgeWorld = rightMostCenterX + halfTile;
+        // Boundaries at tile edges (+ optional inset)
+        LeftEdgeWorld = (leftMostCenterX - halfTile) + edgeInsetWorld;
+        RightEdgeWorld = (rightMostCenterX + halfTile) - edgeInsetWorld;
 
         float span = RightEdgeWorld - LeftEdgeWorld;
-        float step = (laneCount == 0) ? span : span / laneCount; // N+1 boundaries => N segments
+        float step = span / laneCount; // laneCount segments between laneCount+1 boundaries
 
-        // Vertical placement & thickness
+        // Vertical extents
         float halfH = cam.orthographicSize;
-        float topY = cam.transform.position.y + halfH - guideTopPadding;
-        float bottomY = cam.transform.position.y - halfH + guideBottomPadding;
+        float topY = cam.transform.position.y + halfH - topPaddingWorld;
+
+        float bottomY;
+        if (stopGuidesAtHitLine && hitLine != null)
+            bottomY = hitLine.position.y;
+        else
+            bottomY = cam.transform.position.y - halfH + bottomPaddingWorld;
+
         float height = Mathf.Max(0.1f, topY - bottomY);
 
+        // Thickness in pixels -> world
         float worldPerPixel = (halfH * 2f) / Screen.height;
         float thicknessWorld = worldPerPixel * guideThicknessPixels;
 
@@ -155,7 +167,7 @@ public class LaneGuides : MonoBehaviour
             if (lines[i] == null) continue;
 
             float x = LeftEdgeWorld + step * i;
-            lines[i].transform.position = new Vector3(x, (topY + bottomY) * 0.5f, 0f);
+            lines[i].transform.position = new Vector3(x, bottomY + height * 0.5f, 0f);
             lines[i].transform.localScale = new Vector3(thicknessWorld, height, 1f);
 
             var sr = lines[i].GetComponent<SpriteRenderer>();

@@ -68,6 +68,11 @@ public class TileSpawner : MonoBehaviour
             desiredWidth = Mathf.Min(desiredWidth, laneCap);
         }
 
+        TileSizing.CurrentTileWidthWorld = desiredWidth;
+
+        if (laneLayout != null)
+            TileSizing.CurrentLaneStepWorld = laneLayout.LaneStepWorld;
+
         float currentWidth = GetTileWorldWidth(tile);
         float currentHeight = GetTileWorldHeight(tile);
         if (currentWidth <= 0.0001f || currentHeight <= 0.0001f) return;
