@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(100)]
 [RequireComponent(typeof(SpriteRenderer))]
 public class HitLineFitter : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class HitLineFitter : MonoBehaviour
     int lastW, lastH;
     float lastOrtho;
 
+    float lastLeft, lastRight;
+
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -33,12 +36,27 @@ public class HitLineFitter : MonoBehaviour
     {
         if (cam == null || !cam.orthographic || sr == null || sr.sprite == null) return;
 
-        if (Screen.width != lastW || Screen.height != lastH || !Mathf.Approximately(cam.orthographicSize, lastOrtho))
+        bool sizeChanged = (Screen.width != lastW || Screen.height != lastH || !Mathf.Approximately(cam.orthographicSize, lastOrtho));
+
+        bool edgesChanged = false;
+        if (limitWidthToTileArea && laneGuides != null)
+        {
+            edgesChanged = !Mathf.Approximately(laneGuides.LeftEdgeWorld, lastLeft) ||
+                           !Mathf.Approximately(laneGuides.RightEdgeWorld, lastRight);
+        }
+
+        if (sizeChanged || edgesChanged)
         {
             Fit();
             lastW = Screen.width;
             lastH = Screen.height;
             lastOrtho = cam.orthographicSize;
+
+            if (laneGuides != null)
+            {
+                lastLeft = laneGuides.LeftEdgeWorld;
+                lastRight = laneGuides.RightEdgeWorld;
+            }
         }
     }
 
