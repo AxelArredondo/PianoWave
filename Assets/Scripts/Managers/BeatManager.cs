@@ -19,6 +19,9 @@ public class BeatManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance != null && (GameManager.Instance.IsPaused || GameManager.Instance.IsGameOver))
+            return;
+
         timer += Time.deltaTime;
 
         if (timer >= SecondsPerBeat)
@@ -31,5 +34,10 @@ public class BeatManager : MonoBehaviour
     public void IncreaseBPM(float amount)
     {
         bpm += amount;
+    }
+
+    public void ResetBeatTimer()
+    {
+        timer = 0f;
     }
 }

@@ -2,17 +2,43 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+
+    [Header("Music")]
     public AudioSource musicSource;
     public AudioClip musicClip;
 
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else { Destroy(gameObject); return; }
+    }
+
     void Start()
     {
-        musicSource.clip = musicClip;
+        if (musicSource == null)
+            musicSource = GetComponent<AudioSource>();
+
+        if (musicSource != null && musicClip != null)
+            musicSource.clip = musicClip;
+
+        PlayFromStart();
+    }
+
+    public void PlayFromStart()
+    {
+        if (musicSource == null || musicSource.clip == null) return;
+
+        musicSource.Stop();
+        musicSource.time = 0f;
         musicSource.Play();
     }
 
-    void Update()
+    public void StopAndReset()
     {
-        // tempo scaling later
+        if (musicSource == null) return;
+
+        musicSource.Stop();
+        musicSource.time = 0f;
     }
 }

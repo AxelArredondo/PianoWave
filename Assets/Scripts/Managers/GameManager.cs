@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -33,15 +32,15 @@ public class GameManager : MonoBehaviour
     public Material goodMaterial;
     public Material missMaterial;
 
-
-
-
     void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
+        {
             Destroy(gameObject);
+            return;
+        }
 
         IsGameOver = false;
         IsPaused = false;
@@ -89,13 +88,13 @@ public class GameManager : MonoBehaviour
         SpawnPopup("GOOD", goodMaterial, 32f);
     }
 
-
     public void RegisterMiss()
     {
         if (IsGameOver) return;
 
         combo = 0;
         multiplier = 1;
+        uiManager.UpdateCombo(combo, multiplier);
     }
 
     void UpdateMultiplier()
@@ -111,7 +110,6 @@ public class GameManager : MonoBehaviour
         attempts--;
         uiManager.UpdateAttempts(attempts);
 
-        // ✅ ADD THIS
         SpawnPopup("MISS", missMaterial, 34f);
 
         if (attempts <= 0)
@@ -131,7 +129,6 @@ public class GameManager : MonoBehaviour
         RectTransform popupRect = popup.GetComponent<RectTransform>();
         if (popupRect == null) return;
 
-        // ✅ Always center screen at a fixed vertical percent
         Vector2 screenPos = new Vector2(Screen.width * 0.5f, Screen.height * 0.65f);
         popupRect.position = screenPos;
 
@@ -141,6 +138,13 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         IsGameOver = true;
+
+        // ✅ Stop and reset music on game over
+        AudioManager.Instance?.StopAndReset();
+
+        // ✅ Recommended: stop beat timer "phase" so restart is clean
+        BeatManager.Instance?.ResetBeatTimer();
+
         uiManager.ShowGameOver(score, timeAlive);
     }
 
@@ -159,13 +163,20 @@ public class GameManager : MonoBehaviour
     void PauseGame()
     {
         Time.timeScale = 0f;
+
+        // ✅ Stop and reset music on pause
+        AudioManager.Instance?.StopAndReset();
+
         uiManager.ShowPauseMenu(true);
     }
 
     void ResumeGame()
     {
         Time.timeScale = 1f;
+
+        // ✅ Restart music from beginning on resume
+        AudioManager.Instance?.PlayFromStart();
+
         uiManager.ShowPauseMenu(false);
     }
-
 }
