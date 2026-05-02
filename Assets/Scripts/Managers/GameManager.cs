@@ -139,12 +139,10 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
 
-        // ✅ Stop and reset music on game over
-        AudioManager.Instance?.StopAndReset();
+        AudioManager.Instance?.StopAndReset();     // stop music
+        AudioManager.Instance?.PlayGameOverSFX();  // play lose sound
 
-        // ✅ Recommended: stop beat timer "phase" so restart is clean
         BeatManager.Instance?.ResetBeatTimer();
-
         uiManager.ShowGameOver(score, timeAlive);
     }
 

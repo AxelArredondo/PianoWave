@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8787859662377083176, guid: a6a2101c020cc5241b697f66e3027f7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a838d19983d1e434e9384fe5d215cfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
-  baseSpeed: 3
+  baseSpeed: 7
   perfectPercentOfTileHeight: 0.12
   goodPercentOfTileHeight: 1
   tileRenderer: {fileID: 6654271443128489635}
@@ -286,7 +286,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2230225244771174775, guid: 132fdf4d0c34aa64db8729d16a2b7c37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -377,7 +377,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6042971716738114422, guid: ada9436eb6c6cb24f8c51955a55bc8f7, type: 3}
   m_Color: {r: 0.5450981, g: 0, b: 0.5450981, a: 1}

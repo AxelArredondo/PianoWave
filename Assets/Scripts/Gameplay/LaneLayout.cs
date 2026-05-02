@@ -1,14 +1,20 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(0)]
 public class LaneLayout : MonoBehaviour
 {
     public Transform[] lanes;
     public float yPosition = 4f;
 
-    [Header("Fixed spacing")]
-    public float laneStepWorld = 1.2f; // distance between lane centers (constant)
-    public float maxTotalSpanPercentOfScreen = 0.95f; // shrink if screen too narrow
+    [Header("Responsive Sizing  (driven by PlayfieldLayout)")]
+    [Tooltip("Fallback fraction of screen width when PlayfieldLayout is not in the scene.")]
+    [Range(0.3f, 1.0f)] public float fallbackFraction = 0.85f;
 
+    [Tooltip("Must match TileSpawner.maxPercentOfLaneStep. " +
+             "Used to back-compute lane step from the desired total tile area.")]
+    [Range(0.5f, 0.99f)] public float tileToStepRatio = 0.98f;
+
+    /// <summary>World-space distance between adjacent lane centres, updated every frame.</summary>
     public float LaneStepWorld { get; private set; }
 
     Camera cam;
@@ -28,18 +34,27 @@ public class LaneLayout : MonoBehaviour
     {
         if (cam == null || lanes == null || lanes.Length == 0) return;
 
-        float halfW = cam.orthographicSize * cam.aspect;
-        float screenW = halfW * 2f;
+        float screenW = cam.orthographicSize * cam.aspect * 2f;
+        float fraction = PlayfieldLayout.Instance != null ? PlayfieldLayout.Fraction : fallbackFraction;
+        int n = lanes.Length;
 
-        float desiredSpan = laneStepWorld * (lanes.Length - 1);
-        float maxSpan = screenW * maxTotalSpanPercentOfScreen;
-
-        float span = Mathf.Min(desiredSpan, maxSpan);
-        float step = (lanes.Length == 1) ? 0f : span / (lanes.Length - 1);
+        // Solve for lane step so that total tile area = screenW * fraction.
+        // total tile area = span + tileWidth
+        //                 = step*(n-1) + step*tileToStepRatio
+        //                 = step * (n - 1 + tileToStepRatio)
+        float denom = (n - 1) + tileToStepRatio;
+        float step  = (n <= 1 || denom <= 0f) ? 0f : screenW * fraction / denom;
+        float span  = step * (n - 1);
 
         LaneStepWorld = step;
 
-        float startX = -span / 2f;
+        // Keep TileSizing current from frame 1 so LaneGuides, HitLineFitter,
+        // and background are correctly sized before the first tile spawns.
+        TileSizing.CurrentTileWidthWorld  = step * tileToStepRatio;
+        TileSizing.CurrentTileHeightWorld = TileSizing.CurrentTileWidthWorld * TileSizing.TileAspectRatio;
+        TileSizing.CurrentLaneStepWorld   = step;
+
+        float startX = -span * 0.5f;
 
         for (int i = 0; i < lanes.Length; i++)
         {

@@ -15,7 +15,10 @@ public class HitLineFitter : MonoBehaviour
     public float widthPercentOfScreen = 0.95f;
 
     [Header("Position")]
-    public float bottomPaddingWorld = 1.2f;
+    [Tooltip("The hit line is placed one tile height above the screen bottom. " +
+             "Use this for an additional world-unit nudge (positive = higher, negative = lower). " +
+             "Reset to 0 if you previously had 1.2 here.")]
+    public float bottomPaddingWorld = 0f;
 
     [Header("Thickness")]
     public float thicknessPixels = 6f;
@@ -23,8 +26,6 @@ public class HitLineFitter : MonoBehaviour
     SpriteRenderer sr;
     int lastW, lastH;
     float lastOrtho;
-
-    float lastLeft, lastRight;
 
     void Awake()
     {
@@ -36,39 +37,25 @@ public class HitLineFitter : MonoBehaviour
     {
         if (cam == null || !cam.orthographic || sr == null || sr.sprite == null) return;
 
-        bool sizeChanged = (Screen.width != lastW || Screen.height != lastH || !Mathf.Approximately(cam.orthographicSize, lastOrtho));
-
-        bool edgesChanged = false;
-        if (limitWidthToTileArea && laneGuides != null)
-        {
-            edgesChanged = !Mathf.Approximately(laneGuides.LeftEdgeWorld, lastLeft) ||
-                           !Mathf.Approximately(laneGuides.RightEdgeWorld, lastRight);
-        }
-
-        if (sizeChanged || edgesChanged)
+        if (Screen.width != lastW || Screen.height != lastH || !Mathf.Approximately(cam.orthographicSize, lastOrtho))
         {
             Fit();
-            lastW = Screen.width;
-            lastH = Screen.height;
+            lastW     = Screen.width;
+            lastH     = Screen.height;
             lastOrtho = cam.orthographicSize;
-
-            if (laneGuides != null)
-            {
-                lastLeft = laneGuides.LeftEdgeWorld;
-                lastRight = laneGuides.RightEdgeWorld;
-            }
         }
     }
 
     void Fit()
     {
-        float halfH = cam.orthographicSize;
-        float halfW = halfH * cam.aspect;
+        float halfH   = cam.orthographicSize;
+        float halfW   = halfH * cam.aspect;
         float screenW = halfW * 2f;
 
-        // Anchor in view
+        // Position: one tile height above the screen bottom, plus an optional fine-tune offset.
+        float tileH = Mathf.Max(0.1f, TileSizing.CurrentTileHeightWorld);
         Vector3 p = transform.position;
-        p.y = cam.transform.position.y - halfH + bottomPaddingWorld;
+        p.y = cam.transform.position.y - halfH + tileH + bottomPaddingWorld;
         transform.position = p;
 
         // Width
@@ -83,12 +70,12 @@ public class HitLineFitter : MonoBehaviour
             targetWidthWorld = screenW * widthPercentOfScreen;
         }
 
-        // Thickness in pixels
-        float worldPerPixel = (halfH * 2f) / Screen.height;
+        // Thickness in pixels → world
+        float worldPerPixel       = (halfH * 2f) / Screen.height;
         float targetThicknessWorld = worldPerPixel * thicknessPixels;
 
         Vector2 native = sr.sprite.bounds.size;
-        float sx = targetWidthWorld / native.x;
+        float sx = targetWidthWorld    / native.x;
         float sy = targetThicknessWorld / native.y;
 
         transform.localScale = new Vector3(sx, sy, 1f);

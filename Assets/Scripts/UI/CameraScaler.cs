@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[DefaultExecutionOrder(-10)]
 [RequireComponent(typeof(Camera))]
 public class CameraScaler : MonoBehaviour
 {

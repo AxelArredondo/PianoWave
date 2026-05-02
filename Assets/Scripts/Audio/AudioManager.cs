@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioClip musicClip;
 
+    [Header("SFX")]
+    public AudioSource sfxSource;
+    public AudioClip gameOverClip;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -28,7 +32,6 @@ public class AudioManager : MonoBehaviour
     public void PlayFromStart()
     {
         if (musicSource == null || musicSource.clip == null) return;
-
         musicSource.Stop();
         musicSource.time = 0f;
         musicSource.Play();
@@ -37,8 +40,15 @@ public class AudioManager : MonoBehaviour
     public void StopAndReset()
     {
         if (musicSource == null) return;
-
         musicSource.Stop();
         musicSource.time = 0f;
+    }
+
+    public void PlayGameOverSFX()
+    {
+        if (sfxSource == null || gameOverClip == null) return;
+
+        // One-shot so it doesn't interrupt other SFX
+        sfxSource.PlayOneShot(gameOverClip);
     }
 }
