@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 3a4ccc38be10da54a8e2fd4cc2ccb8d5
+guid: e42473a7429fbde4bb2b4b9dbb662061
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3929825767758359797
-    second: pianowave_bg1_0
+      213: -8732895840615222747
+    second: new_city_0
+  - first:
+      213: -6334977298096101495
+    second: new_city_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pianowave_bg1_0
+      name: new_city_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        y: 265
+        width: 1535
+        height: 759
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b03169b09447679c0800000000000000
-      internalID: -3929825767758359797
+      spriteID: 522b4a770858ec680800000000000000
+      internalID: -8732895840615222747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_city_1
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 243
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98761d626b3a518a0800000000000000
+      internalID: -6334977298096101495
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ee714ce88a1ca1747a52699d467f85f1
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pianowave_bg1_0: -3929825767758359797
+      new_city_0: -8732895840615222747
+      new_city_1: -6334977298096101495
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

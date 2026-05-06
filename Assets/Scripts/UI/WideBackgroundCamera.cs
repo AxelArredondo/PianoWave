@@ -26,7 +26,7 @@ public class WideBackgroundCamera : MonoBehaviour
     {
         cam = GetComponent<Camera>();
 
-        cam.depth = -1;                              // renders before the gameplay camera
+        cam.depth = -2;                              // renders before the gameplay camera (Main Camera is -1)
         cam.clearFlags = CameraClearFlags.SolidColor;
         cam.backgroundColor = clearColor;
         cam.rect = new Rect(0f, 0f, 1f, 1f);        // always full screen

@@ -24,6 +24,10 @@ public class TileSpawner : MonoBehaviour
     [Tooltip("height = width * tileAspectRatio. 1.4 gives a tall piano-tile shape (0.7 w:h).")]
     public float tileAspectRatio = 1.4f;
 
+    [Header("Spawn position")]
+    [Tooltip("Extra world-units added to the lane Y when spawning. Positive = higher on screen.")]
+    public float spawnHeightOffset = 0f;
+
     [Header("Spawn spacing")]
     [Tooltip("Visual gap between consecutive tiles as a fraction of tile height. " +
              "0 = tiles touch edge-to-edge; 0.5 = half a tile of space between them. " +
@@ -71,7 +75,7 @@ public class TileSpawner : MonoBehaviour
             TileSizing.CurrentLaneStepWorld = laneLayout.LaneStepWorld;
 
         int laneIndex = Random.Range(0, lanes.Length);
-        float laneY   = lanes[laneIndex].position.y;
+        float laneY   = lanes[laneIndex].position.y + spawnHeightOffset;
 
         // globalTopEdgeY stores where the previous tile's top will be at the NEXT beat
         // (spawn-time top minus one beat's worth of falling = minus (tileH + gap)).

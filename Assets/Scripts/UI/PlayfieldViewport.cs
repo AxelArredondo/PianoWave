@@ -22,6 +22,12 @@ public class PlayfieldViewport : MonoBehaviour
     [Tooltip("Assign the background camera — enabled in widescreen mode, disabled on mobile.")]
     public Camera backgroundCamera;
 
+    [Tooltip("GameObjects to show only on PC (widescreen). Drag BGSkyWide here.")]
+    public GameObject[] pcOnlyObjects;
+
+    [Tooltip("GameObjects to show only on mobile (portrait). Drag BGSky here.")]
+    public GameObject[] mobileOnlyObjects;
+
     [Tooltip("Must match the layer name in Edit > Project Settings > Tags and Layers.")]
     public string backgroundLayerName = "Background";
 
@@ -63,41 +69,27 @@ public class PlayfieldViewport : MonoBehaviour
             ? PlayfieldLayout.IsWidescreen
             : screenAspect > widescreenThreshold;
 
+        // Single-camera approach: one camera renders background + gameplay for all platforms.
+        // Background sprites (sorting order -30 to -5) sit behind gameplay sprites (order 0+)
+        // within the same pass, eliminating all two-camera clear/depth artifacts.
+        cam.rect = new Rect(0f, 0f, 1f, 1f);
+        cam.clearFlags = CameraClearFlags.SolidColor;
+        cam.ResetAspect();
+
         int bgLayer = LayerMask.NameToLayer(backgroundLayerName);
+        if (bgLayer >= 0)
+            cam.cullingMask |= (1 << bgLayer);
 
-        if (isWidescreen)
-        {
-            // Column width: use PlayfieldLayout.PCColumnFraction when available,
-            // otherwise fall back to a portrait-ratio column.
-            float viewportW = PlayfieldLayout.Instance != null
-                ? PlayfieldLayout.PCColumnFraction
-                : Mathf.Clamp01(portraitReferenceAspect / screenAspect);
-
-            float viewportX = (1f - viewportW) * 0.5f;
-            cam.rect = new Rect(viewportX, 0f, viewportW, 1f);
-
-            // Override cam.aspect to the column's pixel aspect so all scripts
-            // (LaneLayout, TileSpawner, HitLineFitter …) see the column width,
-            // not the full screen width.
-            float viewportAspect = (viewportW * Screen.width) / (float)Screen.height;
-            cam.aspect = viewportAspect;
-
-            cam.clearFlags = CameraClearFlags.Depth;
-
-            if (bgLayer >= 0)
-                cam.cullingMask &= ~(1 << bgLayer);
-        }
-        else
-        {
-            cam.rect = new Rect(0f, 0f, 1f, 1f);
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.ResetAspect();
-
-            if (bgLayer >= 0)
-                cam.cullingMask |= (1 << bgLayer);
-        }
-
+        // Background Camera not needed — keep it off.
         if (backgroundCamera != null)
-            backgroundCamera.gameObject.SetActive(isWidescreen);
+            backgroundCamera.gameObject.SetActive(false);
+
+        if (pcOnlyObjects != null)
+            foreach (var obj in pcOnlyObjects)
+                if (obj != null) obj.SetActive(isWidescreen);
+
+        if (mobileOnlyObjects != null)
+            foreach (var obj in mobileOnlyObjects)
+                if (obj != null) obj.SetActive(!isWidescreen);
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40a7c887e47c3e04f9d8351f2c1a4180
+guid: 5a4b88abb6f1cf64383097c8cc32f7d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1372683683445314237
-    second: BackgroundPianoWave_0
+      213: -9115190002909941668
+    second: new_grid_and_sky_wide_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BackgroundPianoWave_0
+      name: new_grid_and_sky_wide_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 1774
+        height: 887
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34d6443767f33fce0800000000000000
-      internalID: -1372683683445314237
+      spriteID: c507c589cf6508180800000000000000
+      internalID: -9115190002909941668
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BackgroundPianoWave_0: -1372683683445314237
+      new_grid_and_sky_wide_0: -9115190002909941668
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

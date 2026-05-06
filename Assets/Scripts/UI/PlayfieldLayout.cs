@@ -72,7 +72,9 @@ public class PlayfieldLayout : MonoBehaviour
         if (aspect > widescreenThreshold)
         {
             IsWidescreen = true;
-            Fraction = pcFraction;
+            // Combine column width and tile fraction so LaneLayout works against
+            // the full screen width rather than a restricted camera viewport.
+            Fraction = pcFraction * pcColumnFraction;
         }
         else if (aspect >= phoneMaxAspect)
         {

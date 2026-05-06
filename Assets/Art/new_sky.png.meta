@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2e255ab1770a5c24d86d0b3fc032bc72
+guid: 1c785ce37a8d4f240926f2109f0dfcba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7889498291773261123
-    second: pianowave_bg3_0
+      213: 3576222925637297420
+    second: new_sky_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pianowave_bg3_0
+      name: new_sky_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2048
+        width: 1254
+        height: 1254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 345423165e02d7d60800000000000000
-      internalID: 7889498291773261123
+      spriteID: c052830adcb41a130800000000000000
+      internalID: 3576222925637297420
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pianowave_bg3_0: 7889498291773261123
+      new_sky_0: 3576222925637297420
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
