@@ -25,9 +25,12 @@ public class BackgroundHorizonLine : MonoBehaviour
     /// <summary>World-space Y of the horizon. Updated every LateUpdate.</summary>
     public static float WorldY { get; private set; }
 
+    private Camera cam;
+
     void Awake()
     {
         Instance = this;
+        cam = Camera.main;
         Compute();
     }
 
@@ -35,7 +38,7 @@ public class BackgroundHorizonLine : MonoBehaviour
 
     void Compute()
     {
-        Camera cam = Camera.main;
+        if (cam == null) cam = Camera.main;
         if (cam == null) return;
         float camBottom = cam.transform.position.y - cam.orthographicSize;
         WorldY = camBottom + cam.orthographicSize * 2f * horizonFraction;

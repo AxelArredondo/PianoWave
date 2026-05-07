@@ -3,11 +3,12 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    private LaneLayout laneLayout;
+    [SerializeField] private LaneLayout laneLayout;
 
     void Start()
     {
-        laneLayout = FindObjectOfType<LaneLayout>();
+        if (laneLayout == null)
+            laneLayout = FindFirstObjectByType<LaneLayout>();
     }
 
     void Update()
@@ -41,7 +42,7 @@ public class InputManager : MonoBehaviour
         Tile bestTile = null;
         float bestDist = float.MaxValue;
 
-        foreach (Tile tile in FindObjectsOfType<Tile>())
+        foreach (Tile tile in Tile.ActiveTiles)
         {
             if (Mathf.Abs(tile.transform.position.x - laneX) > threshold) continue;
 

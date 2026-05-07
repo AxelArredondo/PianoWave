@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameOverPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
         pausePanel.SetActive(false);
     }
 

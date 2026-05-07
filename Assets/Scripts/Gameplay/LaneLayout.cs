@@ -18,16 +18,35 @@ public class LaneLayout : MonoBehaviour
     public float LaneStepWorld { get; private set; }
 
     Camera cam;
+    int lastW, lastH;
+    float lastOrtho;
+    float lastFraction;
 
     void Start()
     {
         cam = Camera.main;
         ApplyLayout();
+        CacheState();
     }
 
     void Update()
     {
+        float fraction = PlayfieldLayout.Instance != null ? PlayfieldLayout.Fraction : fallbackFraction;
+        if (Screen.width == lastW && Screen.height == lastH &&
+            cam != null && Mathf.Approximately(cam.orthographicSize, lastOrtho) &&
+            Mathf.Approximately(fraction, lastFraction))
+            return;
+
         ApplyLayout();
+        CacheState();
+    }
+
+    void CacheState()
+    {
+        lastW = Screen.width;
+        lastH = Screen.height;
+        lastOrtho = cam != null ? cam.orthographicSize : 0f;
+        lastFraction = PlayfieldLayout.Instance != null ? PlayfieldLayout.Fraction : fallbackFraction;
     }
 
     void ApplyLayout()

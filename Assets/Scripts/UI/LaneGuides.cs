@@ -129,6 +129,7 @@ public class LaneGuides : MonoBehaviour
     {
         if (!showGuides || lines == null || cam == null || laneLayout == null || laneLayout.lanes == null) return;
         if (!cam.orthographic) return;
+        if (Screen.height == 0) return;
 
         int laneCount = laneLayout.lanes.Length;
         if (laneCount < 1) return;

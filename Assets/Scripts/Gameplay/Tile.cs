@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Tile : MonoBehaviour
 {
+    public static readonly List<Tile> ActiveTiles = new List<Tile>();
+
     [Header("Movement")]
     public float baseSpeed = 5f;
 
@@ -34,6 +37,16 @@ public class Tile : MonoBehaviour
 
     [Tooltip("Fallback lifetime if your particle prefab does not self-destroy (Stop Action = Destroy).")]
     public float particleLifetime = 1.0f;
+
+    void Awake()
+    {
+        ActiveTiles.Add(this);
+    }
+
+    void OnDestroy()
+    {
+        ActiveTiles.Remove(this);
+    }
 
     void Start()
     {
@@ -119,8 +132,6 @@ public class Tile : MonoBehaviour
     void Perfect()
     {
         GameManager.Instance.RegisterPerfect();
-        Debug.Log("PERFECT");
-
         PlayHitFX(hitScalePerfect);
 
         // Particles only on PERFECT
@@ -135,8 +146,6 @@ public class Tile : MonoBehaviour
     void Good()
     {
         GameManager.Instance.RegisterGood();
-        Debug.Log("GOOD");
-
         PlayHitFX(hitScaleGood);
     }
 
@@ -157,7 +166,7 @@ public class Tile : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // Quick “punch” scale
+        // Quick ï¿½punchï¿½ scale
         transform.localScale *= scale;
 
         // Flash to white

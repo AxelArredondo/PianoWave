@@ -17,7 +17,7 @@ public class PlayfieldViewport : MonoBehaviour
     public float portraitReferenceAspect = 9f / 16f;
 
     [Tooltip("Screen aspects above this switch to widescreen/PC mode.")]
-    public float widescreenThreshold = 0.75f;
+    public float widescreenThreshold = 1.0f;
 
     [Tooltip("Assign the background camera — enabled in widescreen mode, disabled on mobile.")]
     public Camera backgroundCamera;

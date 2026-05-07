@@ -48,6 +48,8 @@ public class HitLineFitter : MonoBehaviour
 
     void Fit()
     {
+        if (Screen.height == 0) return;
+
         float halfH   = cam.orthographicSize;
         float halfW   = halfH * cam.aspect;
         float screenW = halfW * 2f;

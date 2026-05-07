@@ -15,11 +15,11 @@ public class PlayfieldLayout : MonoBehaviour
 
     [Header("Platform Detection  (screen aspect = width / height)")]
     [Tooltip("Screen aspect strictly below this → phone portrait tier.")]
-    public float phoneMaxAspect = 0.65f;
+    public float phoneMaxAspect = 0.70f;
 
     [Tooltip("Screen aspect strictly above this → PC/widescreen column mode. " +
              "Must match PlayfieldViewport.widescreenThreshold if PlayfieldLayout is absent.")]
-    public float widescreenThreshold = 0.75f;
+    public float widescreenThreshold = 1.0f;
 
     [Header("Playfield Fraction  (fraction of camera world width)")]
     [Tooltip("Phone portrait: desired total tile area / screen width.")]
