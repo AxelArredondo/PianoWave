@@ -22,7 +22,19 @@ public class Tile : MonoBehaviour
 
     [Header("Visuals")]
     public SpriteRenderer tileRenderer;
-    public Color[] tileColors;
+
+    private int laneIndex = -1;
+    private Color laneColor = Color.white;
+
+    // Called by TileSpawner right after Instantiate.
+    // Subclasses override ApplyNoteVariant to tint/brighten for hold notes, fast notes, etc.
+    public void Init(int lane, Color baseColor)
+    {
+        laneIndex = lane;
+        laneColor = ApplyNoteVariant(baseColor);
+    }
+
+    protected virtual Color ApplyNoteVariant(Color baseColor) => baseColor;
 
     [Header("Hit FX")]
     public float hitDestroyDelay = 0.08f;
@@ -53,10 +65,10 @@ public class Tile : MonoBehaviour
         if (tileRenderer == null)
             tileRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        if (tileRenderer != null && tileColors != null && tileColors.Length > 0)
-            tileRenderer.color = tileColors[Random.Range(0, tileColors.Length)];
+        if (tileRenderer != null)
+            tileRenderer.color = laneColor;
         else
-            Debug.LogWarning("Tile: tileRenderer missing OR tileColors empty on " + gameObject.name);
+            Debug.LogWarning("Tile: tileRenderer missing on " + gameObject.name);
 
         hitLine = GameManager.Instance.hitLine;
     }

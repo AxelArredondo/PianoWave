@@ -9,6 +9,10 @@ public class TileSpawner : MonoBehaviour
     [Tooltip("Drag your LaneContainer (with LaneLayout) here so we can read LaneStepWorld.")]
     public LaneLayout laneLayout;
 
+    [Header("Lane Colors")]
+    [Tooltip("One entry per lane — index must match the lanes[] array.")]
+    public Color[] laneColors;
+
     Camera cam;
 
     [Header("Tile width")]
@@ -42,6 +46,19 @@ public class TileSpawner : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
+        if (laneColors == null || laneColors.Length == 0)
+            InitDefaultLaneColors();
+    }
+
+    void Reset() => InitDefaultLaneColors();
+
+    void InitDefaultLaneColors()
+    {
+        laneColors = new Color[4];
+        ColorUtility.TryParseHtmlString("#35E0FF", out laneColors[0]);
+        ColorUtility.TryParseHtmlString("#FF3DAA", out laneColors[1]);
+        ColorUtility.TryParseHtmlString("#A66BFF", out laneColors[2]);
+        ColorUtility.TryParseHtmlString("#FF9A3D", out laneColors[3]);
     }
 
     void OnEnable()
@@ -101,7 +118,13 @@ public class TileSpawner : MonoBehaviour
         // so fall/beat = baseSpeed × 0.5 → baseSpeed = (tileH + gap) × 2.
         var tileComp = tile.GetComponent<Tile>();
         if (tileComp != null)
+        {
             tileComp.baseSpeed = (tileH + gap) * 2f;
+            Color laneColor = (laneColors != null && laneIndex < laneColors.Length)
+                ? laneColors[laneIndex]
+                : Color.white;
+            tileComp.Init(laneIndex, laneColor);
+        }
     }
 
     float ComputeDesiredWidth()
