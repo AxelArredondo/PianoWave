@@ -2578,6 +2578,66 @@ RectTransform:
   m_AnchoredPosition: {x: -20, y: -20}
   m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 1, y: 1}
+--- !u!1 &1400220696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400220697}
+  - component: {fileID: 1400220698}
+  m_Layer: 0
+  m_Name: HitReceptorController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1400220697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400220696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1483880319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1400220698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400220696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddd4144718e38e478222a5612c9bf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitReceptorController
+  laneLayout: {fileID: 165593719}
+  hitLine: {fileID: 933813709}
+  laneColors: []
+  widthFraction: 0.25
+  heightFraction: 0.25
+  borderThicknessWorld: 0.002
+  fillAlpha: 0.1
+  outlineAlpha: 0.8
+  glowMaterial: {fileID: 2100000, guid: 12c71607a05f85b4a81c2e08ca666655, type: 2}
+  sortingOrder: -1
+  sortingLayerName: 
+  pulseScalePeak: 1.2
+  pulseDuration: 0.18
+  showTutorialHint: 1
+  hintDuration: 4
+  hintText: {fileID: 0}
 --- !u!1 &1441735060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,6 +2806,8 @@ Transform:
   - {fileID: 1875431343}
   - {fileID: 284846767}
   - {fileID: 165593718}
+  - {fileID: 1778697518}
+  - {fileID: 1400220697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1547386478
@@ -3214,6 +3276,63 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1778697517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778697518}
+  - component: {fileID: 1778697519}
+  m_Layer: 0
+  m_Name: ChartSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1778697518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778697517}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1483880319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1778697519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778697517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f354964e8cf6b00439578d346890e1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChartSpawner
+  chartResourcePath: Charts/Level1
+  tilePrefab: {fileID: 7661985781427285993, guid: efb240f2a04f001429ffe1fb5234257b, type: 3}
+  lanes:
+  - {fileID: 660433414}
+  - {fileID: 1860004200}
+  - {fileID: 219920293}
+  - {fileID: 539087259}
+  laneLayout: {fileID: 165593719}
+  laneColors: []
+  maxPercentOfLaneStep: 0.99
+  tileAspectRatio: 1.4
+  spawnHeightOffset: 10
+  spawnGapFraction: 0.05
 --- !u!1 &1820250666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3515,6 +3634,7 @@ MonoBehaviour:
   - {fileID: 219920293}
   - {fileID: 539087259}
   laneLayout: {fileID: 165593719}
+  laneColors: []
   maxPercentOfLaneStep: 0.99
   tileWidthPercentOfScreen: 0.5
   tileAspectRatio: 1.4
@@ -3612,6 +3732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   musicSource: {fileID: 1956703040}
   musicClip: {fileID: 8300000, guid: a5fd1b2fc86e59a41b0646703f8dc38c, type: 3}
+  musicLibrary:
+  - {fileID: 8300000, guid: a5fd1b2fc86e59a41b0646703f8dc38c, type: 3}
   sfxSource: {fileID: 0}
   gameOverClip: {fileID: 0}
 --- !u!82 &1956703040

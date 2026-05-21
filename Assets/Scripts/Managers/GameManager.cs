@@ -161,20 +161,14 @@ public class GameManager : MonoBehaviour
     void PauseGame()
     {
         Time.timeScale = 0f;
-
-        // ✅ Stop and reset music on pause
-        AudioManager.Instance?.StopAndReset();
-
+        AudioManager.Instance?.Pause();
         uiManager.ShowPauseMenu(true);
     }
 
     void ResumeGame()
     {
         Time.timeScale = 1f;
-
-        // ✅ Restart music from beginning on resume
-        AudioManager.Instance?.PlayFromStart();
-
+        AudioManager.Instance?.Resume();
         uiManager.ShowPauseMenu(false);
     }
 }

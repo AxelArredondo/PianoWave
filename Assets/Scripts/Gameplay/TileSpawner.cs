@@ -74,6 +74,7 @@ public class TileSpawner : MonoBehaviour
 
     void SpawnTile()
     {
+        if (GameSettings.Instance != null && GameSettings.Instance.Mode == GameMode.LevelMode) return;
         if (GameManager.Instance.IsGameOver) return;
         if (tilePrefab == null || lanes == null || lanes.Length == 0) return;
         if (cam == null) cam = Camera.main;

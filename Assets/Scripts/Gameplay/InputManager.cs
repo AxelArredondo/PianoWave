@@ -28,18 +28,21 @@ public class InputManager : MonoBehaviour
             for (int i = 0; i < keys.Length && i < laneLayout.lanes.Length; i++)
             {
                 if (keys[i].wasPressedThisFrame)
+                {
+                    HitReceptorController.Instance?.PulseReceptor(i);
                     HitLane(i);
+                }
             }
         }
     }
 
     void HitLane(int laneIndex)
     {
-        float laneX = laneLayout.lanes[laneIndex].position.x;
+        float laneX    = laneLayout.lanes[laneIndex].position.x;
         float threshold = laneLayout.LaneStepWorld * 0.5f;
-        float hitY = GameManager.Instance.hitLine != null ? GameManager.Instance.hitLine.position.y : 0f;
+        float hitY     = GameManager.Instance.hitLine != null ? GameManager.Instance.hitLine.position.y : 0f;
 
-        Tile bestTile = null;
+        Tile bestTile  = null;
         float bestDist = float.MaxValue;
 
         foreach (Tile tile in Tile.ActiveTiles)
@@ -63,15 +66,41 @@ public class InputManager : MonoBehaviour
             new Vector3(screenPosition.x, screenPosition.y, 0f)
         );
 
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        // Pulse the receptor for whichever lane the tap falls in.
+        if (laneLayout != null)
+        {
+            int tapLane = GetLaneIndexAtX(worldPos.x);
+            if (tapLane >= 0)
+                HitReceptorController.Instance?.PulseReceptor(tapLane);
+        }
 
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
         if (hit.collider != null)
         {
             Tile tile = hit.collider.GetComponent<Tile>();
-            if (tile != null)
+            tile?.Hit();
+        }
+    }
+
+    // Returns the lane index whose centre is closest to worldX, or -1 if outside all lanes.
+    int GetLaneIndexAtX(float worldX)
+    {
+        if (laneLayout == null || laneLayout.lanes == null) return -1;
+
+        float halfStep = laneLayout.LaneStepWorld * 0.5f;
+        int best = -1;
+        float bestDist = float.MaxValue;
+
+        for (int i = 0; i < laneLayout.lanes.Length; i++)
+        {
+            float dist = Mathf.Abs(laneLayout.lanes[i].position.x - worldX);
+            if (dist <= halfStep && dist < bestDist)
             {
-                tile.Hit();
+                bestDist = dist;
+                best = i;
             }
         }
+
+        return best;
     }
 }
