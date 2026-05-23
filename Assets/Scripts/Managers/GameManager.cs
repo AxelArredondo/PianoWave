@@ -97,6 +97,15 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateCombo(combo, multiplier);
     }
 
+    // Called when a hold note is completed. Does not affect combo or multiplier —
+    // that was already handled by the head hit (Perfect/Good).
+    public void RegisterHoldBonus(int bonus)
+    {
+        if (IsGameOver) return;
+        AddScore(bonus);
+        SpawnPopup("HOLD!", perfectMaterial, 34f);
+    }
+
     void UpdateMultiplier()
     {
         multiplier = 1 + (combo / comboStep);

@@ -1,42 +1,4580 @@
 {
   "songName": "Pianowave Theme",
   "audioClipName": "Pianowave-themesong",
-  "bpm": 120,
+  "bpm": 112.347,
   "songOffsetBeats": 0,
   "notes": [
-    { "beat": 4,    "lanes": [0],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 5,    "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 6,    "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 7,    "lanes": [3],    "noteType": "tap", "durationBeats": 0 },
-
-    { "beat": 8,    "lanes": [0],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 9,    "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 10,   "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 11,   "lanes": [3],    "noteType": "tap", "durationBeats": 0 },
-
-    { "beat": 12,   "lanes": [0],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 13,   "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 14,   "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 15,   "lanes": [3],    "noteType": "tap", "durationBeats": 0 },
-
-    { "beat": 16,   "lanes": [0, 3], "noteType": "tap", "durationBeats": 0 },
-    { "beat": 18,   "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 20,   "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 22,   "lanes": [0, 3], "noteType": "tap", "durationBeats": 0 },
-
-    { "beat": 24,   "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 25,   "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 26,   "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 27,   "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-
-    { "beat": 28,   "lanes": [0],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 28.5, "lanes": [3],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 29,   "lanes": [1],    "noteType": "tap", "durationBeats": 0 },
-    { "beat": 29.5, "lanes": [2],    "noteType": "tap", "durationBeats": 0 },
-
-    { "beat": 32,   "lanes": [0, 2], "noteType": "tap", "durationBeats": 0 },
-    { "beat": 34,   "lanes": [1, 3], "noteType": "tap", "durationBeats": 0 },
-    { "beat": 36,   "lanes": [0, 3], "noteType": "tap", "durationBeats": 0 },
-    { "beat": 38,   "lanes": [1, 2], "noteType": "tap", "durationBeats": 0 }
+    {
+      "beat": 4.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 5.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 6.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 7.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 8.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 9.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 10.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 11.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 12.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 13.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 14.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 15.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 16.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 17.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 18.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 19.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 20.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 21.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 22.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 23.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 24.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 25.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 26.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 27.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 28.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 29.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 30.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 31.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 32.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 33.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 34.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 35.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 36.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 37.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 38.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 39.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 40.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 41.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 42.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 43.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 44.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 45.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 46.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 47.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 48.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 49.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 50.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 51.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 52.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 53.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 54.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 55.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 56.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 57.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 58.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 59.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 60.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 61.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 62.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 63.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 64.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 65.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 66.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 67.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 68.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 69.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 70.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 71.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 72.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 73.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 74.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 75.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 76.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 77.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 78.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 79.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 80.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 81.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 82.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 83.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 84.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 85.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 86.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 87.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 88.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 89.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 90.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 91.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 92.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 93.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 94.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 95.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 96.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 97.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 98.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 99.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 100.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 101.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 102.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 103.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 104.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 105.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 106.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 107.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 108.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 108.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 109.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 109.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 110.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 110.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 111.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 112.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 113.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 114.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 115.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 116.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 117.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 118.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 119.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 120.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 121.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 122.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 123.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 124.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 124.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 125.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 125.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 126.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 126.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 127.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 128.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 129.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 130.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 131.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 132.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 133.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 134.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 135.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 136.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 137.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 138.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 139.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 140.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 140.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 141.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 141.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 142.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 142.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 143.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 144.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 145.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 146.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 147.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 148.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 149.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 150.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 151.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 152.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 153.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 154.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 155.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 156.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 156.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 157.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 157.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 158.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 158.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 159.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 160.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 161.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 162.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 163.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 164.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 165.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 166.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 166.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 167.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 168.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 169.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 170.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 171.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 172.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 173.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 174.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 174.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 175.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 176.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 177.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 178.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 179.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 180.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 181.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 182.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 182.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 183.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 184.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 185.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 186.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 187.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 188.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 189.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 190.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 190.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 191.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 192.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 193.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 194.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 195.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 196.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 197.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 198.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 198.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 199.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 200.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 201.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 202.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 203.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 204.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 205.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 206.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 206.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 207.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 208.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 209.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 210.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 211.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 212.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 213.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 214.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 214.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 215.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 216.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 217.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 218.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 219.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 220.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 221.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 222.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 222.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 223.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 224.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 225.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 226.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 227.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 227.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 228.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 229.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 230.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 231.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 231.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 232.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 233.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 234.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 235.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 235.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 236.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 236.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 237.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 238.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 239.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 239.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 240.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 241.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 242.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 243.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 243.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 244.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 245.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 246.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 247.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 247.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 248.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 249.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 250.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 251.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 251.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 252.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 252.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 253.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 254.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 255.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 255.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 256.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 257.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 258.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 259.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 259.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 260.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 261.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 262.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 263.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 263.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 264.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 265.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 266.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 267.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 267.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 268.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 268.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 269.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 270.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 271.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 271.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 272.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 273.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 274.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 275.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 275.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 276.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 277.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 278.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 279.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 279.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 280.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 281.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 282.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 283.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 283.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 284.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 284.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 285.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 286.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 287.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 287.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 288.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 289.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 290.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 291.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 291.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 292.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 293.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 294.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 295.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 295.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 296.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 297.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 298.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 299.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 299.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 300.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 300.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 301.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 302.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 303.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 303.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 304.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 305.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 306.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 307.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 307.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 308.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 309.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 310.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 311.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 311.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 312.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 313.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 314.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 315.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 315.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 316.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 316.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "hold",
+      "durationBeats": 1.0
+    },
+    {
+      "beat": 317.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 318.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 319.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 319.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 320.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 321.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 321.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 322.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 323.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 324.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 325.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 325.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 326.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 327.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 328.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 329.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 329.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 330.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 331.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 332.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 333.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 333.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 334.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 335.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 336.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 337.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 337.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 338.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 339.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 340.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 341.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 341.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 342.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 343.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 344.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 345.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 345.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 346.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 347.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 348.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 349.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 349.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 350.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 351.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 352.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 353.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 353.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 354.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 355.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 356.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 357.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 357.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 358.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 359.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 360.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 361.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 361.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 362.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 363.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 364.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 365.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 365.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 366.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 367.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 368.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 369.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 369.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 370.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 371.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 372.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 373.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 373.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 374.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 375.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 376.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 377.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 377.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 378.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 379.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 380.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 381.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 381.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 382.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 383.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 384.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 385.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 385.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 386.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 387.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 388.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 389.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 389.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 390.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 391.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 392.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 393.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 393.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 394.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 395.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 396.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 397.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 397.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 398.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 399.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 400.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 401.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 401.5,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 402.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 403.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 404.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 405.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 405.5,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 406.0,
+      "lanes": [
+        1,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 407.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 408.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 409.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 409.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 410.0,
+      "lanes": [
+        0,
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 411.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 412.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 413.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 413.5,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 414.0,
+      "lanes": [
+        2,
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 415.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 416.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 417.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 417.5,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 418.0,
+      "lanes": [
+        0,
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 419.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 420.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 421.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 422.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 423.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 424.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 425.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 426.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 427.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 428.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 429.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 430.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 431.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 432.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 433.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 434.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 435.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 436.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 437.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 438.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 439.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 440.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 441.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 442.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 443.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 444.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 445.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 446.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 447.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 448.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 449.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 450.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 451.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 452.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 453.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 454.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 455.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 456.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 457.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 458.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 459.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 460.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 461.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 462.0,
+      "lanes": [
+        2
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 463.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 464.0,
+      "lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 465.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 466.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 467.0,
+      "lanes": [
+        3
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 468.0,
+      "lanes": [
+        0,
+        3
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    },
+    {
+      "beat": 469.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 470.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
+      "beat": 471.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "quick",
+      "durationBeats": 0
+    },
+    {
+      "beat": 472.0,
+      "lanes": [
+        1,
+        2
+      ],
+      "noteType": "accent",
+      "durationBeats": 0
+    }
+  ],
+  "speedEvents": [
+    {
+      "beat": 0,
+      "bpm": 112.347
+    },
+    {
+      "beat": 64,
+      "bpm": 117.965
+    },
+    {
+      "beat": 128,
+      "bpm": 123.582
+    },
+    {
+      "beat": 192,
+      "bpm": 129.199
+    },
+    {
+      "beat": 256,
+      "bpm": 137.064
+    },
+    {
+      "beat": 320,
+      "bpm": 146.051
+    },
+    {
+      "beat": 420,
+      "bpm": 155.039
+    }
+  ],
+  "backgroundEvents": [
+    {
+      "beat": 0,
+      "theme": "purple"
+    },
+    {
+      "beat": 64,
+      "theme": "pink"
+    },
+    {
+      "beat": 128,
+      "theme": "blue"
+    },
+    {
+      "beat": 192,
+      "theme": "purple"
+    },
+    {
+      "beat": 256,
+      "theme": "pink"
+    },
+    {
+      "beat": 320,
+      "theme": "blue"
+    },
+    {
+      "beat": 420,
+      "theme": "default"
+    }
   ]
 }

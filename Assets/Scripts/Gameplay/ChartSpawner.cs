@@ -12,8 +12,12 @@ using UnityEngine;
 //     = musicStartDelay + N * SecondsPerBeat — which is audio time N * SecondsPerBeat. ✓
 //   - Once music is playing, audioSource.time drives spawn decisions (audio-synced, drift-free).
 //
+// SpeedMultiplier: a visual-only speed scalar updated by speedEvents. It does NOT change
+//   BeatManager.bpm or audio playback — only how fast tiles fall on screen.
+//   Tile.Update multiplies baseSpeed by (BeatManager.bpm/120) * SpeedMultiplier.
+//   In random mode SpeedMultiplier is never changed, so it stays at 1.0.
+//
 // To add more songs: drop another JSON under Resources/Charts/ and set ChartResourcePath in GameSettings.
-// To add hold/quick notes: read note.noteType in SpawnNote and call a different Tile subclass.
 public class ChartSpawner : MonoBehaviour
 {
     public static ChartSpawner Instance;
@@ -36,6 +40,11 @@ public class ChartSpawner : MonoBehaviour
     public float spawnHeightOffset = 0f;
     [Range(0f, 2f)] public float spawnGapFraction = 0.15f;
 
+    // ── visual speed multiplier (level mode only) ──────────────────────────────
+    // Updated by speedEvents in the chart. Tile.Update reads this.
+    // Always 1.0 in random mode (ChartSpawner is disabled there).
+    public static float SpeedMultiplier = 1f;
+
     // ── runtime state ──────────────────────────────────────────────────────────
     ChartData chart;
     float secondsPerBeat;
@@ -44,6 +53,8 @@ public class ChartSpawner : MonoBehaviour
     bool  musicStarted;
     bool  initialized;       // deferred to first Update so LaneLayout is settled
     int   noteIndex;
+    int   speedIndex;
+    int   bgIndex;
     Camera cam;
 
     // ── lifecycle ──────────────────────────────────────────────────────────────
@@ -81,10 +92,13 @@ public class ChartSpawner : MonoBehaviour
         // Load the matching audio clip from AudioManager's library.
         AudioManager.Instance?.SetMusicByName(chart.audioClipName);
 
-        gameTimer    = 0f;
-        noteIndex    = 0;
-        musicStarted = false;
-        initialized  = false;
+        gameTimer        = 0f;
+        noteIndex        = 0;
+        speedIndex       = 0;
+        bgIndex          = 0;
+        SpeedMultiplier  = 1f;
+        musicStarted     = false;
+        initialized      = false;
     }
 
     void Update()
@@ -113,6 +127,31 @@ public class ChartSpawner : MonoBehaviour
             if (currentTime < adjustedBeat * secondsPerBeat) break;
             SpawnNote(chart.notes[noteIndex]);
             noteIndex++;
+        }
+
+        // Process speed events — update the visual speed multiplier.
+        // Does NOT touch BeatManager.bpm or audio; no sync risk.
+        if (chart.speedEvents != null)
+        {
+            while (speedIndex < chart.speedEvents.Length)
+            {
+                float adjustedBeat = chart.speedEvents[speedIndex].beat - chart.songOffsetBeats;
+                if (currentTime < adjustedBeat * secondsPerBeat) break;
+                SpeedMultiplier = chart.speedEvents[speedIndex].bpm / chart.bpm;
+                speedIndex++;
+            }
+        }
+
+        // Process background events — notify BackgroundController to switch theme.
+        if (chart.backgroundEvents != null)
+        {
+            while (bgIndex < chart.backgroundEvents.Length)
+            {
+                float adjustedBeat = chart.backgroundEvents[bgIndex].beat - chart.songOffsetBeats;
+                if (currentTime < adjustedBeat * secondsPerBeat) break;
+                BackgroundController.Instance?.SetTheme(chart.backgroundEvents[bgIndex].theme);
+                bgIndex++;
+            }
         }
     }
 
@@ -178,7 +217,7 @@ public class ChartSpawner : MonoBehaviour
                 tile.baseSpeed = baseSpeed;
                 Color c = (laneColors != null && laneIndex < laneColors.Length)
                     ? laneColors[laneIndex] : Color.white;
-                tile.Init(laneIndex, c);
+                tile.Init(laneIndex, c, note.noteType, note.durationBeats);
             }
         }
     }

@@ -2275,6 +2275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1352918543}
+  - component: {fileID: 1352918544}
   m_Layer: 6
   m_Name: Backgrounds
   m_TagString: Untagged
@@ -2304,6 +2305,25 @@ Transform:
   - {fileID: 1760918476}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1352918544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352918542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ac223f2fb952f4ab57a449f0446d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundController
+  tintTargets:
+  - {fileID: 14034134}
+  - {fileID: 223261202}
+  themePurple: {r: 0.44, g: 0.18, b: 0.82, a: 1}
+  themePink: {r: 0.9, g: 0.18, b: 0.52, a: 1}
+  themeBlue: {r: 0.1, g: 0.38, b: 0.95, a: 1}
+  themeDefault: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1360253492
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,35 +2,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Attach to a GameObject in the MainMenu scene.
-// Buttons named "Level1Button" and "RandomButton" are auto-wired by name,
-// or you can assign them manually in the Inspector.
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Scene to load")]
+    [Header("Scene")]
     public string gameSceneName = "PianoWave_Main";
 
-    [Header("Buttons (auto-found by name if left empty)")]
-    public Button level1Button;
-    public Button randomButton;
+    [Header("Buttons — drag from the hierarchy")]
+    [Tooltip("Drag LevelsButton here. Loads LevelMode (Charts/Level1).")]
+    public Button levelsButton;
+
+    [Tooltip("Drag EndlessButton here. Loads RandomMode (endless/random).")]
+    public Button endlessButton;
 
     void Start()
     {
-        // Ensure GameSettings singleton exists (created here if not already present).
         if (GameSettings.Instance == null)
         {
-            GameObject go = new GameObject("GameSettings");
+            var go = new GameObject("GameSettings");
             go.AddComponent<GameSettings>();
         }
 
-        // Auto-wire buttons if not assigned in Inspector.
-        if (level1Button == null)
-            level1Button = FindButtonByName("Level1Button");
-        if (randomButton == null)
-            randomButton = FindButtonByName("RandomButton");
+        // Fallback auto-wire by name (supports old names too)
+        if (levelsButton == null)
+            levelsButton = FindButtonByName("LevelsButton") ?? FindButtonByName("Level1Button");
+        if (endlessButton == null)
+            endlessButton = FindButtonByName("EndlessButton") ?? FindButtonByName("RandomButton");
 
-        level1Button?.onClick.AddListener(PlayLevel1);
-        randomButton?.onClick.AddListener(PlayRandomMode);
+        levelsButton?.onClick.AddListener(PlayLevel1);
+        endlessButton?.onClick.AddListener(PlayRandomMode);
+
+        if (levelsButton == null)
+            Debug.LogWarning("[MainMenuManager] LevelsButton not found — assign it in the Inspector.");
+        if (endlessButton == null)
+            Debug.LogWarning("[MainMenuManager] EndlessButton not found — assign it in the Inspector.");
     }
 
     public void PlayLevel1()
@@ -46,11 +50,10 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(gameSceneName);
     }
 
-    Button FindButtonByName(string buttonName)
+    Button FindButtonByName(string n)
     {
-        Button[] all = FindObjectsByType<Button>(FindObjectsSortMode.None);
-        foreach (var b in all)
-            if (b.name == buttonName) return b;
+        foreach (var b in FindObjectsByType<Button>(FindObjectsSortMode.None))
+            if (b.name == n) return b;
         return null;
     }
 }
