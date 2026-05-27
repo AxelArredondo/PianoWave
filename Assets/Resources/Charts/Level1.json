@@ -865,7 +865,7 @@
     {
       "beat": 109.0,
       "lanes": [
-        3
+        0
       ],
       "noteType": "tap",
       "durationBeats": 0
@@ -946,7 +946,7 @@
     {
       "beat": 117.0,
       "lanes": [
-        1
+        0
       ],
       "noteType": "tap",
       "durationBeats": 0
@@ -1019,7 +1019,7 @@
     {
       "beat": 125.0,
       "lanes": [
-        3
+        0
       ],
       "noteType": "tap",
       "durationBeats": 0
@@ -1173,7 +1173,7 @@
     {
       "beat": 141.0,
       "lanes": [
-        3
+        0
       ],
       "noteType": "tap",
       "durationBeats": 0
@@ -2092,18 +2092,18 @@
     {
       "beat": 236.0,
       "lanes": [
-        1
-      ],
-      "noteType": "tap",
-      "durationBeats": 0
-    },
-    {
-      "beat": 236.0,
-      "lanes": [
         0
       ],
       "noteType": "hold",
       "durationBeats": 1.0
+    },
+    {
+      "beat": 236.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
     },
     {
       "beat": 237.0,
@@ -2266,18 +2266,18 @@
     {
       "beat": 252.0,
       "lanes": [
-        0
-      ],
-      "noteType": "tap",
-      "durationBeats": 0
-    },
-    {
-      "beat": 252.0,
-      "lanes": [
         1
       ],
       "noteType": "hold",
       "durationBeats": 1.0
+    },
+    {
+      "beat": 252.0,
+      "lanes": [
+        0
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
     },
     {
       "beat": 253.0,
@@ -2442,16 +2442,16 @@
       "lanes": [
         1
       ],
-      "noteType": "tap",
-      "durationBeats": 0
+      "noteType": "hold",
+      "durationBeats": 1.0
     },
     {
       "beat": 268.0,
       "lanes": [
-        1
+        0
       ],
-      "noteType": "hold",
-      "durationBeats": 1.0
+      "noteType": "tap",
+      "durationBeats": 0
     },
     {
       "beat": 269.0,
@@ -2614,23 +2614,23 @@
     {
       "beat": 284.0,
       "lanes": [
-        1
-      ],
-      "noteType": "tap",
-      "durationBeats": 0
-    },
-    {
-      "beat": 284.0,
-      "lanes": [
         0
       ],
       "noteType": "hold",
       "durationBeats": 1.0
     },
     {
+      "beat": 284.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
+    },
+    {
       "beat": 285.0,
       "lanes": [
-        0
+        1
       ],
       "noteType": "tap",
       "durationBeats": 0
@@ -2790,16 +2790,16 @@
       "lanes": [
         3
       ],
-      "noteType": "tap",
-      "durationBeats": 0
+      "noteType": "hold",
+      "durationBeats": 1.0
     },
     {
       "beat": 300.0,
       "lanes": [
-        3
+        0
       ],
-      "noteType": "hold",
-      "durationBeats": 1.0
+      "noteType": "tap",
+      "durationBeats": 0
     },
     {
       "beat": 301.0,
@@ -2962,18 +2962,18 @@
     {
       "beat": 316.0,
       "lanes": [
-        1
-      ],
-      "noteType": "tap",
-      "durationBeats": 0
-    },
-    {
-      "beat": 316.0,
-      "lanes": [
         3
       ],
       "noteType": "hold",
       "durationBeats": 1.0
+    },
+    {
+      "beat": 316.0,
+      "lanes": [
+        1
+      ],
+      "noteType": "tap",
+      "durationBeats": 0
     },
     {
       "beat": 317.0,

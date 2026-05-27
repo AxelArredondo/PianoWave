@@ -2647,7 +2647,7 @@ MonoBehaviour:
   laneColors: []
   widthFraction: 0.25
   heightFraction: 0.25
-  borderThicknessWorld: 0.002
+  borderThicknessWorld: 0
   fillAlpha: 0.1
   outlineAlpha: 0.8
   glowMaterial: {fileID: 2100000, guid: 12c71607a05f85b4a81c2e08ca666655, type: 2}

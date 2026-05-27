@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public int attempts = 5;
     public float timeAlive = 0f;
 
+    [Header("Debug")]
+    public bool unlimitedAttempts = false;
+
     [Header("UI")]
     public UIManager uiManager;
 
@@ -52,6 +55,12 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             TogglePause();
+        }
+
+        if (Keyboard.current != null && Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            unlimitedAttempts = !unlimitedAttempts;
+            Debug.Log("Unlimited attempts: " + unlimitedAttempts);
         }
 
         if (IsGameOver || IsPaused) return;
@@ -116,10 +125,12 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
 
+        SpawnPopup("MISS", missMaterial, 34f);
+
+        if (unlimitedAttempts) return;
+
         attempts--;
         uiManager.UpdateAttempts(attempts);
-
-        SpawnPopup("MISS", missMaterial, 34f);
 
         if (attempts <= 0)
             EndGame();

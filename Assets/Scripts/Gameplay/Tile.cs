@@ -33,6 +33,10 @@ public class Tile : MonoBehaviour
     [Range(0f, 1f)] public float holdBodyAlpha = 0.55f;
     [Tooltip("Bonus score awarded when the player completes a full hold.")]
     public int holdBonusScore = 200;
+    [Tooltip("Optional custom sprite for the hold end cap. Leave null to auto-generate a rectangle.")]
+    public Sprite holdEndCapSprite;
+    [Tooltip("End cap height as a fraction of tile height. Set to 0 to disable.")]
+    [Range(0f, 0.50f)] public float holdEndCapFraction = 0.18f;
 
     // ── hold runtime state ─────────────────────────────────────────────────────
     private bool holdActive  = false;
@@ -121,11 +125,11 @@ public class Tile : MonoBehaviour
         bodyGO.transform.SetParent(transform, worldPositionStays: false);
 
         var sr = bodyGO.AddComponent<SpriteRenderer>();
-        Texture2D tex = Texture2D.whiteTexture;
-        sr.sprite = Sprite.Create(tex,
-            new Rect(0, 0, tex.width, tex.height),
+        Texture2D gradTex = CreateBodyGradientTexture();
+        sr.sprite = Sprite.Create(gradTex,
+            new Rect(0, 0, gradTex.width, gradTex.height),
             new Vector2(0.5f, 0.5f),
-            (float)tex.width);  // PPU = tex.width → native world size = 1×1
+            (float)gradTex.width);  // PPU = tex.width → native world size = 1×1
 
         Color bodyColor = laneColor;
         bodyColor.a = holdBodyAlpha;
@@ -147,6 +151,59 @@ public class Tile : MonoBehaviour
         holdLaneIndex    = laneIndex;
         holdDuration     = durationBeats * (BeatManager.Instance != null
             ? BeatManager.Instance.SecondsPerBeat : 0.5f);
+
+        if (holdEndCapFraction > 0f) BuildHoldEndCap(tileW, bodyH, ps);
+    }
+
+    // Creates a 4×4 texture whose top two rows fade to transparent, giving the hold
+    // body a gradient that signals "approaching release" without requiring a shader.
+    static Texture2D CreateBodyGradientTexture()
+    {
+        var tex = new Texture2D(4, 4, TextureFormat.RGBA32, false);
+        tex.filterMode = FilterMode.Bilinear;
+        tex.wrapMode   = TextureWrapMode.Clamp;
+        for (int x = 0; x < 4; x++)
+        {
+            tex.SetPixel(x, 0, Color.white);
+            tex.SetPixel(x, 1, Color.white);
+            tex.SetPixel(x, 2, new Color(1f, 1f, 1f, 0.65f));
+            tex.SetPixel(x, 3, new Color(1f, 1f, 1f, 0.30f));
+        }
+        tex.Apply();
+        return tex;
+    }
+
+    // Adds a bright end cap at the top of the hold body (the release point).
+    void BuildHoldEndCap(float tileW, float bodyH, Vector3 ps)
+    {
+        float tileH = TileSizing.CurrentTileHeightWorld;
+        float capH  = tileH * holdEndCapFraction;
+
+        var capGO = new GameObject("HoldEndCap");
+        capGO.transform.SetParent(transform, worldPositionStays: false);
+
+        var sr = capGO.AddComponent<SpriteRenderer>();
+        if (holdEndCapSprite != null)
+        {
+            sr.sprite = holdEndCapSprite;
+        }
+        else
+        {
+            Texture2D tex = Texture2D.whiteTexture;
+            sr.sprite = Sprite.Create(tex,
+                new Rect(0, 0, tex.width, tex.height),
+                new Vector2(0.5f, 0.5f),
+                (float)tex.width);
+        }
+        sr.color        = new Color(laneColor.r, laneColor.g, laneColor.b, 1f);
+        sr.sortingOrder = 1;  // in front of body (-1) and head (0)
+
+        capGO.transform.localScale = new Vector3(tileW / ps.x, capH / ps.y, 1f);
+        // Center at the top edge of the body so cap sits flush on the release point.
+        capGO.transform.localPosition = new Vector3(
+            0f,
+            (tileH * 0.5f + bodyH - capH * 0.5f) / ps.y,
+            -0.05f);
     }
 
     // ── Unity lifecycle ────────────────────────────────────────────────────────

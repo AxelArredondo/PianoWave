@@ -72,6 +72,13 @@ public class TileSpawner : MonoBehaviour
         BeatManager.OnBeat -= SpawnTile;
     }
 
+    void Start()
+    {
+        // Give the difficulty manager its lane count before the first beat fires.
+        int numLanes = (lanes != null) ? lanes.Length : 4;
+        RandomDifficultyManager.Instance?.Initialize(numLanes);
+    }
+
     void SpawnTile()
     {
         if (GameSettings.Instance != null && GameSettings.Instance.Mode == GameMode.LevelMode) return;
@@ -81,9 +88,10 @@ public class TileSpawner : MonoBehaviour
 
         // Compute actual dimensions first so the tracker uses the real tile height,
         // not a stale cached value from a previous (possibly wrongly-sized) tile.
-        float desiredWidth  = ComputeDesiredWidth();
-        float tileH         = desiredWidth * tileAspectRatio;
-        float gap           = tileH * spawnGapFraction;
+        float desiredWidth = ComputeDesiredWidth();
+        float tileH        = desiredWidth * tileAspectRatio;
+        float gap          = tileH * spawnGapFraction;
+        float baseSpd      = (tileH + gap) * 2f;
 
         // Publish sizes before anything reads TileSizing.
         TileSizing.TileAspectRatio        = tileAspectRatio;
@@ -92,39 +100,53 @@ public class TileSpawner : MonoBehaviour
         if (laneLayout != null)
             TileSizing.CurrentLaneStepWorld = laneLayout.LaneStepWorld;
 
-        int laneIndex = Random.Range(0, lanes.Length);
-        float laneY   = lanes[laneIndex].position.y + spawnHeightOffset;
+        // Ask the difficulty manager what to spawn this beat.
+        // Falls back to a plain random tap tile if no manager is present.
+        int[]  spawnLanes;
+        string noteType      = "tap";
+        float  durationBeats = 0f;
 
-        // globalTopEdgeY stores where the previous tile's top will be at the NEXT beat
-        // (spawn-time top minus one beat's worth of falling = minus (tileH + gap)).
-        // This means in steady state minCentreY == laneY, so all tiles spawn at laneY
-        // and are naturally spaced by their fall distance. The Mathf.Max only matters
-        // when two beats fire in rapid succession (overlap guard).
+        var mgr = RandomDifficultyManager.Instance;
+        if (mgr != null && mgr.enabled)
+        {
+            mgr.AdvanceBeat();
+            SpawnDecision decision = mgr.GetDecision();
+            if (decision.lanes == null || decision.lanes.Length == 0) return; // rest beat
+            spawnLanes    = decision.lanes;
+            noteType      = decision.noteType;
+            durationBeats = decision.durationBeats;
+        }
+        else
+        {
+            spawnLanes = new int[] { Random.Range(0, lanes.Length) };
+        }
+
+        // All tiles in a single beat share the same Y. The overlap guard fires once
+        // and protects against two beats firing in rapid succession.
+        // All lane transforms share the same Y, so lanes[0] is representative.
+        float laneY      = lanes[0].position.y + spawnHeightOffset;
         float minCentreY = globalTopEdgeY + gap + tileH * 0.5f;
         float spawnY     = Mathf.Max(laneY, minCentreY);
+        globalTopEdgeY   = (spawnY + tileH * 0.5f) - (tileH + gap);
 
-        // Advance tracker: record this tile's top edge minus one beat of falling.
-        // fall per beat = baseSpeed × 0.5 = (tileH + gap) × 2 × 0.5 = (tileH + gap)
-        globalTopEdgeY = (spawnY + tileH * 0.5f) - (tileH + gap);
-
-        Vector3 spawnPos = lanes[laneIndex].position;
-        spawnPos.y       = spawnY;
-        GameObject tile  = Instantiate(tilePrefab, spawnPos, Quaternion.identity);
-
-        ApplyTileScale(tile, desiredWidth, tileH);
-
-        // Set speed so the tile falls by exactly (tileH + gap) per beat, making the
-        // visual gap between consecutive tiles equal to spawnGapFraction × tileH on
-        // every screen size. Tile.Update computes: move = baseSpeed × (bpm/120) × dt,
-        // so fall/beat = baseSpeed × 0.5 → baseSpeed = (tileH + gap) × 2.
-        var tileComp = tile.GetComponent<Tile>();
-        if (tileComp != null)
+        foreach (int laneIndex in spawnLanes)
         {
-            tileComp.baseSpeed = (tileH + gap) * 2f;
-            Color laneColor = (laneColors != null && laneIndex < laneColors.Length)
-                ? laneColors[laneIndex]
-                : Color.white;
-            tileComp.Init(laneIndex, laneColor);
+            if (laneIndex < 0 || laneIndex >= lanes.Length) continue;
+
+            Vector3 spawnPos = lanes[laneIndex].position;
+            spawnPos.y       = spawnY;
+
+            GameObject tileObj = Instantiate(tilePrefab, spawnPos, Quaternion.identity);
+            ApplyTileScale(tileObj, desiredWidth, tileH);
+
+            var tileComp = tileObj.GetComponent<Tile>();
+            if (tileComp != null)
+            {
+                tileComp.baseSpeed = baseSpd;
+                Color laneColor = (laneColors != null && laneIndex < laneColors.Length)
+                    ? laneColors[laneIndex] : Color.white;
+                tileComp.Init(laneIndex, laneColor, noteType, durationBeats);
+            }
         }
     }
 

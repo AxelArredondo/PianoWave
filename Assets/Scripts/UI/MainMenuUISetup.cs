@@ -54,11 +54,19 @@ public class MainMenuUISetup : MonoBehaviour
     [Range(0.05f, 0.5f)] public float crtFlickerInterval = 0.12f;
 
     // ── BUTTON GLOW ─────────────────────────────────────────────────────────────
-    [Header("Button Glow (optional)")]
+    [Header("Button Glow — Main Menu (optional)")]
     [Tooltip("DRAG → a separate glow Image child inside LevelsButton (not the button image itself).")]
     public Image levelsButtonGlow;
     [Tooltip("DRAG → a separate glow Image child inside EndlessButton.")]
     public Image endlessButtonGlow;
+
+    [Header("Button Glow — Level Select (optional)")]
+    [Tooltip("DRAG → a separate glow Image child inside Level1Button.")]
+    public Image level1ButtonGlow;
+    [Tooltip("DRAG → a separate glow Image child inside BackButton.")]
+    public Image backButtonGlow;
+
+    [Header("Button Glow Settings")]
     [Range(0f, 1f)]  public float glowIdleAlpha  = 0.00f;
     [Range(0f, 1f)]  public float glowHoverAlpha = 0.65f;
     [Range(1f, 15f)] public float glowFadeSpeed  = 8f;
@@ -87,8 +95,10 @@ public class MainMenuUISetup : MonoBehaviour
             "  crtFrameImage         ← CRTFrameImage         (retro TV border sprite)\n" +
             "  crtScreenOverlayImage ← CRTScreenOverlayImage (scanlines, auto raycast=OFF)\n" +
             "  logoImage             ← PianoWaveLogoImage    (your logo sprite)\n" +
-            "  levelsButton          ← LevelsButton          (loads LevelMode)\n" +
-            "  endlessButton         ← EndlessButton         (loads RandomMode)"
+            "  levelsButton          ← LevelsButton          (opens Level Select panel)\n" +
+            "  endlessButton         ← EndlessButton         (starts RandomMode)\n" +
+            "  level1ButtonGlow      ← Glow image inside Level1Button (optional)\n" +
+            "  backButtonGlow        ← Glow image inside BackButton   (optional)"
         );
     }
 
@@ -132,6 +142,15 @@ public class MainMenuUISetup : MonoBehaviour
     {
         WireGlow(levelsButton, levelsButtonGlow);
         WireGlow(endlessButton, endlessButtonGlow);
+        WireGlow(FindButton("Level1Button"), level1ButtonGlow);
+        WireGlow(FindButton("BackButton"),   backButtonGlow);
+    }
+
+    Button FindButton(string n)
+    {
+        foreach (var b in FindObjectsByType<Button>(FindObjectsSortMode.None))
+            if (b.name == n) return b;
+        return null;
     }
 
     void WireGlow(Button btn, Image glow)

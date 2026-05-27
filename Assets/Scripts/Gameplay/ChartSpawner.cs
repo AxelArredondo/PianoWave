@@ -86,6 +86,8 @@ public class ChartSpawner : MonoBehaviour
         chart = JsonUtility.FromJson<ChartData>(json.text);
         secondsPerBeat = 60f / chart.bpm;
 
+        ChartValidator.Validate(chart);
+
         if (BeatManager.Instance != null)
             BeatManager.Instance.bpm = chart.bpm;
 
