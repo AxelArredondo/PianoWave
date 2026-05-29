@@ -40,6 +40,12 @@ public class ChartSpawner : MonoBehaviour
     public float spawnHeightOffset = 0f;
     [Range(0f, 2f)] public float spawnGapFraction = 0.15f;
 
+    [Header("Chart Validation")]
+    [Tooltip("Minimum beats of spacing required between a quick note and any tap/accent/hold in the same lane. 0.5 = stated minimum; 0.75 = visually non-overlapping.")]
+    [Range(0f, 2f)] public float quickGapBeats = 0.5f;
+    [Tooltip("Minimum beats of spacing required between a hold note and any adjacent same-lane note.")]
+    [Range(0f, 2f)] public float holdGapBeats = 0.5f;
+
     // ── visual speed multiplier (level mode only) ──────────────────────────────
     // Updated by speedEvents in the chart. Tile.Update reads this.
     // Always 1.0 in random mode (ChartSpawner is disabled there).
@@ -86,7 +92,7 @@ public class ChartSpawner : MonoBehaviour
         chart = JsonUtility.FromJson<ChartData>(json.text);
         secondsPerBeat = 60f / chart.bpm;
 
-        ChartValidator.Validate(chart);
+        ChartValidator.Validate(chart, holdGapBeats, quickGapBeats);
 
         if (BeatManager.Instance != null)
             BeatManager.Instance.bpm = chart.bpm;

@@ -2013,6 +2013,7 @@ MonoBehaviour:
   score: 0
   attempts: 1
   timeAlive: 0
+  unlimitedAttempts: 0
   uiManager: {fileID: 1547386480}
   combo: 0
   multiplier: 1
@@ -3353,6 +3354,8 @@ MonoBehaviour:
   tileAspectRatio: 1.4
   spawnHeightOffset: 10
   spawnGapFraction: 0.05
+  quickGapBeats: 0.75
+  holdGapBeats: 0.5
 --- !u!1 &1820250666
 GameObject:
   m_ObjectHideFlags: 0

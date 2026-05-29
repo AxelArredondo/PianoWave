@@ -1,30 +1,35 @@
 using UnityEngine;
 
-// Validates a loaded ChartData for hold-note readability issues.
-// Only hold notes impose spacing rules — tap/quick chains are unrestricted.
+// Validates a loaded ChartData for readability issues.
 // Call Validate() once after loading a chart. Logs warnings; never throws.
+//
+// Spacing rules enforced:
+//   holdGapBeats  — minimum gap between a hold note and any adjacent same-lane note (default 0.5).
+//   quickGapBeats — minimum gap between a quick note and any tap/accent/hold in the same lane (default 0.5).
+//
+// quick → quick  in the same lane: always allowed (no minimum enforced).
+// tap   → tap    in the same lane: always allowed (no minimum enforced).
+// Different lanes are never checked.
 public static class ChartValidator
 {
     const int MaxLanes = 8;
 
-    // holdGapBeats: minimum beat gap required between a hold and any adjacent same-lane note.
-    // Tweak this value to loosen or tighten hold breathing room. Default: 0.5 beats.
-    public static void Validate(ChartData chart, float holdGapBeats = 0.5f)
+    public static void Validate(ChartData chart, float holdGapBeats = 0.5f, float quickGapBeats = 0.5f)
     {
         if (chart?.notes == null || chart.notes.Length == 0) return;
 
-        // holdEndBeat[lane]  — beat when the last hold in this lane finishes.
-        // lastNoteBeat[lane] — beat of the most recent note in this lane (any type).
-        // lastNoteType[lane] — type of that most recent note.
-        float[]  holdEndBeat  = new float[MaxLanes];
-        float[]  lastNoteBeat = new float[MaxLanes];
-        string[] lastNoteType = new string[MaxLanes];
+        // Per-lane tracking state.
+        float[]  holdEndBeat   = new float[MaxLanes];   // beat when the last hold in this lane ends
+        float[]  lastNoteBeat  = new float[MaxLanes];   // beat of the most recent note (any type)
+        float[]  lastQuickBeat = new float[MaxLanes];   // beat of the most recent quick note
+        string[] lastNoteType  = new string[MaxLanes];  // type of the most recent note
 
         for (int i = 0; i < MaxLanes; i++)
         {
-            holdEndBeat[i]  = float.NegativeInfinity;
-            lastNoteBeat[i] = float.NegativeInfinity;
-            lastNoteType[i] = null;
+            holdEndBeat[i]   = float.NegativeInfinity;
+            lastNoteBeat[i]  = float.NegativeInfinity;
+            lastQuickBeat[i] = float.NegativeInfinity;
+            lastNoteType[i]  = null;
         }
 
         foreach (var note in chart.notes)
@@ -35,8 +40,14 @@ public static class ChartValidator
             {
                 if (lane < 0 || lane >= MaxLanes) continue;
 
-                // Rule: after a hold ends, the next same-lane note needs holdGapBeats of space.
-                // Covers: tap-after-hold and quick-after-hold in the same lane.
+                bool isQuick    = note.noteType == "quick";
+                bool isNonQuick = note.noteType == "tap"
+                               || note.noteType == "accent"
+                               || note.noteType == "hold";
+
+                // ── Hold end spacing ──────────────────────────────────────────────────
+                // Any note (tap, quick, accent, hold) must be at least holdGapBeats after
+                // the end of the previous hold in this lane.
                 if (!float.IsNegativeInfinity(holdEndBeat[lane])
                     && note.beat < holdEndBeat[lane] + holdGapBeats)
                 {
@@ -46,8 +57,9 @@ public static class ChartValidator
                         $"gap {note.beat - holdEndBeat[lane]:F2} < {holdGapBeats} beats).");
                 }
 
-                // Rule: a hold note should not start within holdGapBeats of the previous same-lane note.
-                // Covers: hold-after-tap and hold-after-quick in the same lane.
+                // ── Hold start spacing ────────────────────────────────────────────────
+                // A hold must start at least holdGapBeats after the previous same-lane note
+                // (covers hold-after-tap and hold-after-quick).
                 if (note.noteType == "hold"
                     && !float.IsNegativeInfinity(lastNoteBeat[lane])
                     && note.beat - lastNoteBeat[lane] < holdGapBeats)
@@ -58,13 +70,46 @@ public static class ChartValidator
                         $"gap {note.beat - lastNoteBeat[lane]:F2} < {holdGapBeats} beats).");
                 }
 
-                // Track the end beat of this hold so the next note in this lane can be checked.
+                // ── Quick-after-nonQuick spacing ──────────────────────────────────────
+                // A quick note must be at least quickGapBeats after the most recent
+                // tap/accent/hold in the same lane.
+                if (isQuick
+                    && !float.IsNegativeInfinity(lastNoteBeat[lane])
+                    && lastNoteType[lane] != "quick"
+                    && note.beat - lastNoteBeat[lane] < quickGapBeats)
+                {
+                    Debug.LogWarning(
+                        $"Chart warning: quick note too close after {lastNoteType[lane]} in lane {lane} " +
+                        $"(quick at beat {note.beat:F2}, previous at beat {lastNoteBeat[lane]:F2}, " +
+                        $"gap {note.beat - lastNoteBeat[lane]:F2} < {quickGapBeats} beats). " +
+                        $"Consider shifting quick to a different lane or beat.");
+                }
+
+                // ── NonQuick-after-quick spacing ──────────────────────────────────────
+                // A tap, accent, or hold must be at least quickGapBeats after the most
+                // recent quick note in the same lane.
+                if (isNonQuick
+                    && !float.IsNegativeInfinity(lastQuickBeat[lane])
+                    && note.beat - lastQuickBeat[lane] < quickGapBeats)
+                {
+                    Debug.LogWarning(
+                        $"Chart warning: {note.noteType} too close after quick in lane {lane} " +
+                        $"(beat {note.beat:F2}, previous quick at beat {lastQuickBeat[lane]:F2}, " +
+                        $"gap {note.beat - lastQuickBeat[lane]:F2} < {quickGapBeats} beats). " +
+                        $"Consider shifting quick to a different lane or beat.");
+                }
+
+                // ── Update tracking state ─────────────────────────────────────────────
+
                 if (note.noteType == "hold" && note.durationBeats > 0f)
                 {
                     float endBeat = note.beat + note.durationBeats;
                     if (endBeat > holdEndBeat[lane])
                         holdEndBeat[lane] = endBeat;
                 }
+
+                if (isQuick)
+                    lastQuickBeat[lane] = note.beat;
 
                 lastNoteBeat[lane] = note.beat;
                 lastNoteType[lane] = note.noteType;

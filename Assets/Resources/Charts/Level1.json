@@ -857,7 +857,7 @@
     {
       "beat": 108.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -873,7 +873,7 @@
     {
       "beat": 109.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -889,7 +889,7 @@
     {
       "beat": 110.5,
       "lanes": [
-        1
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -1027,7 +1027,7 @@
     {
       "beat": 125.5,
       "lanes": [
-        2
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -1165,7 +1165,7 @@
     {
       "beat": 140.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -1181,7 +1181,7 @@
     {
       "beat": 141.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -1501,7 +1501,7 @@
     {
       "beat": 174.5,
       "lanes": [
-        1
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -1651,7 +1651,7 @@
     {
       "beat": 190.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -1951,7 +1951,7 @@
     {
       "beat": 222.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2001,7 +2001,7 @@
     {
       "beat": 227.5,
       "lanes": [
-        2
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2042,7 +2042,7 @@
     {
       "beat": 231.5,
       "lanes": [
-        1
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2133,7 +2133,7 @@
     {
       "beat": 239.5,
       "lanes": [
-        1
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2216,7 +2216,7 @@
     {
       "beat": 247.5,
       "lanes": [
-        0
+        3
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2258,7 +2258,7 @@
     {
       "beat": 251.5,
       "lanes": [
-        0
+        3
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2307,7 +2307,7 @@
     {
       "beat": 255.5,
       "lanes": [
-        3
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2349,7 +2349,7 @@
     {
       "beat": 259.5,
       "lanes": [
-        1
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2390,7 +2390,7 @@
     {
       "beat": 263.5,
       "lanes": [
-        2
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2481,7 +2481,7 @@
     {
       "beat": 271.5,
       "lanes": [
-        3
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2523,7 +2523,7 @@
     {
       "beat": 275.5,
       "lanes": [
-        3
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2606,7 +2606,7 @@
     {
       "beat": 283.5,
       "lanes": [
-        1
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2655,7 +2655,7 @@
     {
       "beat": 287.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2697,7 +2697,7 @@
     {
       "beat": 291.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2738,7 +2738,7 @@
     {
       "beat": 295.5,
       "lanes": [
-        2
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2780,7 +2780,7 @@
     {
       "beat": 299.5,
       "lanes": [
-        1
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2829,7 +2829,7 @@
     {
       "beat": 303.5,
       "lanes": [
-        3
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2912,7 +2912,7 @@
     {
       "beat": 311.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -2954,7 +2954,7 @@
     {
       "beat": 315.5,
       "lanes": [
-        0
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3001,7 +3001,7 @@
       "durationBeats": 0
     },
     {
-      "beat": 319.5,
+      "beat": 319.0,
       "lanes": [
         1
       ],
@@ -3030,7 +3030,7 @@
     {
       "beat": 321.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3072,7 +3072,7 @@
     {
       "beat": 325.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3156,7 +3156,7 @@
     {
       "beat": 333.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3242,7 +3242,7 @@
     {
       "beat": 341.5,
       "lanes": [
-        1
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3326,7 +3326,7 @@
     {
       "beat": 349.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3540,7 +3540,7 @@
     {
       "beat": 369.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3752,7 +3752,7 @@
     {
       "beat": 389.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -3794,7 +3794,7 @@
     {
       "beat": 393.5,
       "lanes": [
-        0
+        2
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -4006,7 +4006,7 @@
     {
       "beat": 413.5,
       "lanes": [
-        3
+        0
       ],
       "noteType": "quick",
       "durationBeats": 0
@@ -4050,7 +4050,7 @@
     {
       "beat": 417.5,
       "lanes": [
-        0
+        1
       ],
       "noteType": "quick",
       "durationBeats": 0
