@@ -44,7 +44,9 @@ public static class MainMenuSceneBuilder
             Object.DestroyImmediate(c.gameObject);
         foreach (var m in Object.FindObjectsByType<MainMenuManager>(FindObjectsSortMode.None))
             Object.DestroyImmediate(m.gameObject);
-        Debug.Log("[PianoWave] Old Canvas/MainMenuManager objects removed.");
+        foreach (var a in Object.FindObjectsByType<AudioManager>(FindObjectsSortMode.None))
+            Object.DestroyImmediate(a.gameObject);
+        Debug.Log("[PianoWave] Old Canvas/MainMenuManager/AudioManager objects removed.");
     }
 
     // ── Camera ───────────────────────────────────────────────────────────────────
@@ -196,6 +198,26 @@ public static class MainMenuSceneBuilder
         manager.levelsButton  = levelsBtn;
         manager.endlessButton = endlessBtn;
         EditorUtility.SetDirty(managerGO);
+
+        // ── AudioManager ──────────────────────────────────────────────────────────
+        if (Object.FindFirstObjectByType<AudioManager>() == null)
+        {
+            var audioGO  = new GameObject("AudioManager");
+            var audioMgr = audioGO.AddComponent<AudioManager>();
+            var audioSrc = audioGO.AddComponent<AudioSource>();
+            audioSrc.loop        = true;
+            audioSrc.playOnAwake = false;
+            audioMgr.musicSource = audioSrc;
+
+            var mainMenuClip = AssetDatabase.LoadAssetAtPath<AudioClip>(
+                "Assets/Audio/Music/Pianowave_Main_Menu_song.mp3");
+            if (mainMenuClip != null)
+                audioMgr.musicClip = mainMenuClip;
+            else
+                Debug.LogWarning("[PianoWave] Pianowave_Main_Menu_song.mp3 not found — assign AudioManager.musicClip manually.");
+
+            EditorUtility.SetDirty(audioGO);
+        }
 
         // ── MainMenuUISetup (on Canvas) ───────────────────────────────────────────
         // All image references are pre-wired. Drag your sprites into these fields.
