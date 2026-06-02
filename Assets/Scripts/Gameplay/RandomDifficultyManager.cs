@@ -45,37 +45,43 @@ public class RandomDifficultyManager : MonoBehaviour
         public float speedOscPeriodBeats = 40f;
     }
 
-    [Header("Phase 1 — Easy")]
+    // Phase timing at 120 BPM: 1 beat ≈ 0.5 s
+    // Phase 1:  0 –  14 beats (  0 –  7 s) — pure tap warm-up
+    // Phase 2: 15 –  44 beats (  7 – 22 s) — accents + first doubles
+    // Phase 3: 45 –  89 beats ( 22 – 45 s) — quick notes, hold notes, more doubles
+    // Phase 4: 90+  beats     ( 45 +     ) — full variety, escalating speed
+
+    [Header("Phase 1 — Warm-Up (tap only)")]
     public PhaseData phase1 = new PhaseData
     {
-        startBeat = 0,   skipBeatChance = 0.30f, doubleNoteChance = 0f,
-        accentChance = 0.08f, quickChance = 0f,    holdChance = 0f,
+        startBeat = 0,   skipBeatChance = 0.35f, doubleNoteChance = 0f,
+        accentChance = 0f, quickChance = 0f,    holdChance = 0f,
         holdDurationMin = 1.5f, holdDurationMax = 2.5f,
-        speedBase = 1.00f, speedOscAmp = 0.03f, speedOscPeriodBeats = 40f
+        speedBase = 1.00f, speedOscAmp = 0.02f, speedOscPeriodBeats = 40f
     };
 
-    [Header("Phase 2 — Doubles & Accents")]
+    [Header("Phase 2 — Accents & First Doubles")]
     public PhaseData phase2 = new PhaseData
     {
-        startBeat = 60,  skipBeatChance = 0.18f, doubleNoteChance = 0.15f,
-        accentChance = 0.18f, quickChance = 0f,    holdChance = 0.06f,
+        startBeat = 15,  skipBeatChance = 0.25f, doubleNoteChance = 0.18f,
+        accentChance = 0.25f, quickChance = 0f,    holdChance = 0f,
         holdDurationMin = 1.5f, holdDurationMax = 3f,
-        speedBase = 1.08f, speedOscAmp = 0.05f, speedOscPeriodBeats = 32f
+        speedBase = 1.06f, speedOscAmp = 0.04f, speedOscPeriodBeats = 32f
     };
 
-    [Header("Phase 3 — Quick Notes & Holds")]
+    [Header("Phase 3 — Quick Notes, Holds & More Doubles")]
     public PhaseData phase3 = new PhaseData
     {
-        startBeat = 130, skipBeatChance = 0.12f, doubleNoteChance = 0.25f,
-        accentChance = 0.20f, quickChance = 0.10f, holdChance = 0.12f,
+        startBeat = 45,  skipBeatChance = 0.15f, doubleNoteChance = 0.30f,
+        accentChance = 0.20f, quickChance = 0.15f, holdChance = 0.10f,
         holdDurationMin = 1.5f, holdDurationMax = 3.5f,
-        speedBase = 1.18f, speedOscAmp = 0.07f, speedOscPeriodBeats = 24f
+        speedBase = 1.16f, speedOscAmp = 0.07f, speedOscPeriodBeats = 24f
     };
 
-    [Header("Phase 4+ — Full Chaos (tuned to stay readable)")]
+    [Header("Phase 4+ — Full Chaos")]
     public PhaseData phase4 = new PhaseData
     {
-        startBeat = 220, skipBeatChance = 0.08f, doubleNoteChance = 0.32f,
+        startBeat = 90,  skipBeatChance = 0.08f, doubleNoteChance = 0.38f,
         accentChance = 0.22f, quickChance = 0.18f, holdChance = 0.14f,
         holdDurationMin = 1.5f, holdDurationMax = 4f,
         speedBase = 1.28f, speedOscAmp = 0.10f, speedOscPeriodBeats = 20f
