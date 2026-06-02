@@ -96,7 +96,8 @@ public class RandomDifficultyManager : MonoBehaviour
     int beatsElapsed;
     int laneCount;
     readonly Queue<int> recentLanes = new Queue<int>();
-    float[] holdEndBeat; // per-lane beat at which the active hold expires
+    float[] holdEndBeat;      // per-lane beat at which the active hold expires
+    int[]   consecutivePicks; // per-lane count of back-to-back beats this lane was chosen
 
     // ── Lifecycle ──────────────────────────────────────────────────────────────
 
@@ -115,9 +116,10 @@ public class RandomDifficultyManager : MonoBehaviour
     // Called by TileSpawner once it knows how many lanes are in the scene.
     public void Initialize(int numLanes)
     {
-        laneCount    = Mathf.Max(1, numLanes);
-        holdEndBeat  = new float[laneCount];
-        beatsElapsed = 0;
+        laneCount        = Mathf.Max(1, numLanes);
+        holdEndBeat      = new float[laneCount];
+        consecutivePicks = new int[laneCount];
+        beatsElapsed     = 0;
         recentLanes.Clear();
         ChartSpawner.SpeedMultiplier = 1f;
     }
@@ -160,6 +162,11 @@ public class RandomDifficultyManager : MonoBehaviour
         if (noteType == "hold")
             foreach (int l in chosen)
                 holdEndBeat[l] = beatsElapsed + duration;
+
+        // Update consecutive-pick counters: increment picked lanes, reset the rest.
+        var chosenSet = new System.Collections.Generic.HashSet<int>(chosen);
+        for (int i = 0; i < laneCount; i++)
+            consecutivePicks[i] = chosenSet.Contains(i) ? consecutivePicks[i] + 1 : 0;
 
         foreach (int l in chosen)
         {
@@ -216,6 +223,12 @@ public class RandomDifficultyManager : MonoBehaviour
         for (int i = 0; i < laneCount; i++)
             if (beatsElapsed < holdEndBeat[i] + holdSameLaneGapBeats)
                 w[i] = 0f;
+
+        // Hard-cap: never allow more than 3 consecutive picks on the same lane.
+        if (consecutivePicks != null)
+            for (int i = 0; i < laneCount; i++)
+                if (consecutivePicks[i] >= 3)
+                    w[i] = 0f;
 
         return w;
     }

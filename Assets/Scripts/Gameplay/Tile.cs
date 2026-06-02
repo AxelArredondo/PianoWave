@@ -404,7 +404,8 @@ public class Tile : MonoBehaviour
     void SpawnParticle()
     {
         Vector3 pos = (spawnParticlesAtHitLine && hitLine != null)
-            ? hitLine.position : transform.position;
+            ? new Vector3(transform.position.x, hitLine.position.y, hitLine.position.z)
+            : transform.position;
         GameObject fx = Instantiate(hitParticlePrefab, pos, Quaternion.identity);
         Destroy(fx, particleLifetime);
     }
