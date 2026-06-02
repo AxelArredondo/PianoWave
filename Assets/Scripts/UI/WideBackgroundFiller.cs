@@ -46,6 +46,7 @@ public class WideBackgroundFiller : MonoBehaviour
     private SpriteRenderer sr;
     private int lastW, lastH;
     private float lastOrtho;
+    private float lastGlobalY;
 
     void Awake()
     {
@@ -72,19 +73,23 @@ public class WideBackgroundFiller : MonoBehaviour
         Camera mainCam = Camera.main;
         if (mainCam == null) return;
 
-        float ortho = mainCam.orthographicSize;
+        float ortho   = mainCam.orthographicSize;
+        float globalY = BackgroundController.Instance != null ? BackgroundController.Instance.heightOffset : 0f;
 
-        if (Screen.width == lastW && Screen.height == lastH && Mathf.Approximately(ortho, lastOrtho))
+        if (Screen.width == lastW && Screen.height == lastH
+            && Mathf.Approximately(ortho, lastOrtho)
+            && Mathf.Approximately(globalY, lastGlobalY))
             return;
 
-        lastW     = Screen.width;
-        lastH     = Screen.height;
-        lastOrtho = ortho;
+        lastW       = Screen.width;
+        lastH       = Screen.height;
+        lastOrtho   = ortho;
+        lastGlobalY = globalY;
 
-        Fit(mainCam, ortho);
+        Fit(mainCam, ortho, globalY);
     }
 
-    void Fit(Camera mainCam, float ortho)
+    void Fit(Camera mainCam, float ortho, float globalY)
     {
         float screenAspect = (float)Screen.width / Screen.height;
         float camW = ortho * screenAspect * 2f;
@@ -140,7 +145,7 @@ public class WideBackgroundFiller : MonoBehaviour
             float renderedHalfH = finalSy * py * native.y * 0.5f;
             float camBottomY    = mainCam.transform.position.y - ortho;
             Vector3 pos         = sr.transform.position;
-            pos.y               = camBottomY + renderedHalfH + positionOffset.y;
+            pos.y               = camBottomY + renderedHalfH + positionOffset.y + globalY;
             pos.x               = positionOffset.x;
             sr.transform.position = pos;
         }
@@ -157,10 +162,17 @@ public class WideBackgroundFiller : MonoBehaviour
                 // center Y = horizonY + half the sprite's rendered height.
                 float renderedHalfH   = finalSy * py * native.y * 0.5f;
                 Vector3 pos           = sr.transform.position;
-                pos.y                 = BackgroundHorizonLine.WorldY + renderedHalfH + positionOffset.y;
+                pos.y                 = BackgroundHorizonLine.WorldY + renderedHalfH + positionOffset.y + globalY;
                 pos.x                 = positionOffset.x;
                 sr.transform.position = pos;
             }
+        }
+        else
+        {
+            // No anchor — center on camera Y and apply the global offset.
+            Vector3 pos = sr.transform.position;
+            pos.y = mainCam.transform.position.y + globalY;
+            sr.transform.position = pos;
         }
 
         if (debugLog)

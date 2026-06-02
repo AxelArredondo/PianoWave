@@ -43,13 +43,17 @@ public class HitReceptorController : MonoBehaviour
     [Range(0.1f, 1.5f)] public float heightFraction = 0.55f;
     [Tooltip("World-units thick for the outline border strips.")]
     public float borderThicknessWorld = 0.06f;
+    [Tooltip("Shifts the border outward (+) or inward (-) from the fill edge. 0 = flush with edge.")]
+    public float borderOffset = 0f;
 
     [Header("Receptor Appearance")]
     [Range(0f, 1f)] public float fillAlpha    = 0.10f;
     [Range(0f, 1f)] public float outlineAlpha = 0.80f;
-    [Tooltip("Optional additive/glow material for all receptor sprites. " +
-             "Leave null to use the default sprite material.")]
+    [Tooltip("Additive/glow material for the fill sprite. Leave null for default.")]
     public Material glowMaterial;
+    [Tooltip("Material for the outline border strips. Leave null for default (alpha-blend). " +
+             "Create a Sprites/Default material with normal blending for an opaque outline.")]
+    public Material outlineMaterial;
     public int sortingOrder = -1;
     public string sortingLayerName = "";
 
@@ -167,14 +171,46 @@ public class HitReceptorController : MonoBehaviour
             receptors[i].root.transform.position = new Vector3(laneX, hitY, 0f);
 
             // Fill — full receptor area.
-            SetSpriteSize(receptors[i].fill,         tileW,          receptorH,         0f, 0f);
+            SetSpriteSize(receptors[i].fill,         tileW,             receptorH,        0f, 0f);
 
-            // Border strips — centred on their respective edges.
-            SetSpriteSize(receptors[i].borderTop,    tileW,          border,             0f, (receptorH - border) * 0.5f);
-            SetSpriteSize(receptors[i].borderBottom, tileW,          border,             0f, -(receptorH - border) * 0.5f);
-            SetSpriteSize(receptors[i].borderLeft,   border,         receptorH,          -(tileW - border) * 0.5f, 0f);
-            SetSpriteSize(receptors[i].borderRight,  border,         receptorH,          (tileW - border) * 0.5f, 0f);
+            // Border strips. borderOffset shifts them outward (+) or inward (-) from the fill edge.
+            // Top/bottom are wider to cover corners regardless of offset.
+            float outerW   = tileW + 2f * (border + borderOffset);
+            float edgeOffY = (receptorH + border) * 0.5f + borderOffset;
+            float edgeOffX = (tileW    + border) * 0.5f + borderOffset;
+            SetSpriteSize(receptors[i].borderTop,    outerW, border,  0f,  edgeOffY);
+            SetSpriteSize(receptors[i].borderBottom, outerW, border,  0f, -edgeOffY);
+            SetSpriteSize(receptors[i].borderLeft,   border, receptorH, -edgeOffX, 0f);
+            SetSpriteSize(receptors[i].borderRight,  border, receptorH,  edgeOffX, 0f);
+
+            // Reapply fill alpha every frame so Inspector changes take effect immediately.
+            if (pulseTimers[i] <= 0f)
+                SetAlpha(receptors[i].fill, fillAlpha);
         }
+    }
+
+    void OnValidate()
+    {
+        if (receptors == null) return;
+        for (int i = 0; i < receptors.Length; i++)
+        {
+            SetAlpha(receptors[i].fill, fillAlpha);
+            ApplyMaterial(receptors[i].fill, glowMaterial);
+            if (pulseTimers == null || pulseTimers[i] <= 0f)
+            {
+                SetOutlineAlpha(i, outlineAlpha);
+                ApplyMaterial(receptors[i].borderTop,    outlineMaterial);
+                ApplyMaterial(receptors[i].borderBottom, outlineMaterial);
+                ApplyMaterial(receptors[i].borderLeft,   outlineMaterial);
+                ApplyMaterial(receptors[i].borderRight,  outlineMaterial);
+            }
+        }
+    }
+
+    static void ApplyMaterial(SpriteRenderer sr, Material mat)
+    {
+        if (sr == null || mat == null) return;
+        sr.material = mat;
     }
 
     // ── public API ────────────────────────────────────────────────────────────
@@ -195,16 +231,16 @@ public class HitReceptorController : MonoBehaviour
         r.root = new GameObject($"Receptor_{laneIndex}");
         r.root.transform.SetParent(transform, worldPositionStays: false);
 
-        r.fill        = MakeSprite(r.root, "Fill",        baseColor, fillAlpha);
-        r.borderTop   = MakeSprite(r.root, "BorderTop",   baseColor, outlineAlpha);
-        r.borderBottom= MakeSprite(r.root, "BorderBottom",baseColor, outlineAlpha);
-        r.borderLeft  = MakeSprite(r.root, "BorderLeft",  baseColor, outlineAlpha);
-        r.borderRight = MakeSprite(r.root, "BorderRight", baseColor, outlineAlpha);
+        r.fill        = MakeSprite(r.root, "Fill",        baseColor, fillAlpha,    glowMaterial,    sortingOrder);
+        r.borderTop   = MakeSprite(r.root, "BorderTop",   baseColor, outlineAlpha, outlineMaterial, sortingOrder + 1);
+        r.borderBottom= MakeSprite(r.root, "BorderBottom",baseColor, outlineAlpha, outlineMaterial, sortingOrder + 1);
+        r.borderLeft  = MakeSprite(r.root, "BorderLeft",  baseColor, outlineAlpha, outlineMaterial, sortingOrder + 1);
+        r.borderRight = MakeSprite(r.root, "BorderRight", baseColor, outlineAlpha, outlineMaterial, sortingOrder + 1);
 
         return r;
     }
 
-    SpriteRenderer MakeSprite(GameObject parent, string childName, Color baseColor, float alpha)
+    SpriteRenderer MakeSprite(GameObject parent, string childName, Color baseColor, float alpha, Material mat, int order)
     {
         var go = new GameObject(childName);
         go.transform.SetParent(parent.transform, worldPositionStays: false);
@@ -218,10 +254,10 @@ public class HitReceptorController : MonoBehaviour
         c.a     = alpha;
         sr.color = c;
 
-        if (glowMaterial != null) sr.material = glowMaterial;
+        if (mat != null) sr.material = mat;
 
         if (!string.IsNullOrEmpty(sortingLayerName)) sr.sortingLayerName = sortingLayerName;
-        sr.sortingOrder = sortingOrder;
+        sr.sortingOrder = order;
 
         return sr;
     }

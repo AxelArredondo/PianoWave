@@ -9,6 +9,10 @@ public class BackgroundController : MonoBehaviour
 {
     public static BackgroundController Instance { get; private set; }
 
+    [Header("Position")]
+    [Tooltip("Shifts every background element up (positive) or down (negative) by this many world units.")]
+    public float heightOffset = 40f;
+
     [Header("Sprites to tint on theme change")]
     [Tooltip("Drag background SpriteRenderers here. All will be tinted when SetTheme() is called.")]
     public SpriteRenderer[] tintTargets;
