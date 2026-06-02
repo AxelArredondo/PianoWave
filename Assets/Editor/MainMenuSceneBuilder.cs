@@ -268,48 +268,71 @@ public static class MainMenuSceneBuilder
         rt.offsetMax = Vector2.zero;
     }
 
+    const string ButtonPrefabPath = "Assets/Prefabs/UI/PianowaveButton.prefab";
+
     static Button MakeButton(GameObject container, string objName, string label,
         Color normalCol, Color highlightCol, Color pressedCol)
     {
-        var btnGO = new GameObject(objName, typeof(RectTransform));
-        btnGO.transform.SetParent(container.transform, false);
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ButtonPrefabPath);
 
-        var img  = btnGO.AddComponent<Image>();
-        img.color = Color.white; // ColorBlock drives the actual tint
-
-        var btn = btnGO.AddComponent<Button>();
-        btn.colors = new ColorBlock
+        GameObject btnGO;
+        if (prefab != null)
         {
-            normalColor      = normalCol,
-            highlightedColor = highlightCol,
-            pressedColor     = pressedCol,
-            selectedColor    = highlightCol,
-            disabledColor    = new Color(0.30f, 0.30f, 0.30f, 0.50f),
-            colorMultiplier  = 1f,
-            fadeDuration     = 0.12f,
-        };
+            btnGO = (GameObject)PrefabUtility.InstantiatePrefab(prefab, container.transform);
+            btnGO.name = objName;
+        }
+        else
+        {
+            // Fallback: plain color-block button if prefab hasn't been built yet.
+            Debug.LogWarning("[PianoWave] PianowaveButton prefab not found — run PianoWave/Build Button Prefab first.");
+            btnGO = new GameObject(objName, typeof(RectTransform));
+            btnGO.transform.SetParent(container.transform, false);
 
-        var le = btnGO.AddComponent<LayoutElement>();
-        le.preferredHeight = 145f;
-        le.flexibleWidth   = 1f;
+            var img  = btnGO.AddComponent<Image>();
+            img.color = Color.white;
 
-        var labelGO = new GameObject("Label", typeof(RectTransform));
-        labelGO.transform.SetParent(btnGO.transform, false);
+            var btn0 = btnGO.AddComponent<Button>();
+            btn0.colors = new ColorBlock
+            {
+                normalColor      = normalCol,
+                highlightedColor = highlightCol,
+                pressedColor     = pressedCol,
+                selectedColor    = highlightCol,
+                disabledColor    = new Color(0.30f, 0.30f, 0.30f, 0.50f),
+                colorMultiplier  = 1f,
+                fadeDuration     = 0.12f,
+            };
 
-        var tmp       = labelGO.AddComponent<TextMeshProUGUI>();
-        tmp.text      = label;
-        tmp.fontSize  = 58f;
-        tmp.fontStyle = FontStyles.Bold;
-        tmp.alignment = TextAlignmentOptions.Center;
-        tmp.color     = Color.white;
+            var le0 = btnGO.AddComponent<LayoutElement>();
+            le0.preferredHeight = 145f;
+            le0.flexibleWidth   = 1f;
 
-        var labelRT      = labelGO.GetComponent<RectTransform>();
-        labelRT.anchorMin = Vector2.zero;
-        labelRT.anchorMax = Vector2.one;
-        labelRT.offsetMin = Vector2.zero;
-        labelRT.offsetMax = Vector2.zero;
+            var labelGO0 = new GameObject("Label", typeof(RectTransform));
+            labelGO0.transform.SetParent(btnGO.transform, false);
+            var tmp0          = labelGO0.AddComponent<TextMeshProUGUI>();
+            tmp0.text         = label;
+            tmp0.fontSize     = 58f;
+            tmp0.fontStyle    = FontStyles.Bold;
+            tmp0.alignment    = TextAlignmentOptions.Center;
+            tmp0.color        = Color.white;
+            var labelRT0      = labelGO0.GetComponent<RectTransform>();
+            labelRT0.anchorMin = Vector2.zero;
+            labelRT0.anchorMax = Vector2.one;
+            labelRT0.offsetMin = Vector2.zero;
+            labelRT0.offsetMax = Vector2.zero;
 
-        return btn;
+            return btn0;
+        }
+
+        // Set the label text on the instantiated prefab.
+        var labelChild = btnGO.transform.Find("Label");
+        if (labelChild != null)
+        {
+            var tmp = labelChild.GetComponent<TextMeshProUGUI>();
+            if (tmp != null) tmp.text = label;
+        }
+
+        return btnGO.GetComponent<Button>();
     }
 
     static void AddToBuildSettings(string path)

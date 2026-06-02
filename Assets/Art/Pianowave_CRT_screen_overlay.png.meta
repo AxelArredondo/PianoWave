@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: d577b6d4adf96ab4594ead04bd962f93
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7076324848243624839
+    second: Pianowave_CRT_screen_overlay_0
+  - first:
+      213: 2125954126837387878
+    second: Pianowave_CRT_screen_overlay_1
+  - first:
+      213: 257398303062580303
+    second: Pianowave_CRT_screen_overlay_2
+  - first:
+      213: 7630113810752960274
+    second: Pianowave_CRT_screen_overlay_3
+  - first:
+      213: -6302327479427551925
+    second: Pianowave_CRT_screen_overlay_4
+  - first:
+      213: -3353365149126919821
+    second: Pianowave_CRT_screen_overlay_5
+  - first:
+      213: 6552280227262396361
+    second: Pianowave_CRT_screen_overlay_6
+  - first:
+      213: -3200578206554836556
+    second: Pianowave_CRT_screen_overlay_7
+  - first:
+      213: 8697076359524939588
+    second: Pianowave_CRT_screen_overlay_8
+  - first:
+      213: -7907995612612659817
+    second: Pianowave_CRT_screen_overlay_9
+  - first:
+      213: -6218676974873077183
+    second: Pianowave_CRT_screen_overlay_10
+  - first:
+      213: 2328711272534947817
+    second: Pianowave_CRT_screen_overlay_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 33
+        width: 1465
+        height: 956
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78bc4de15f7243260800000000000000
+      internalID: 7076324848243624839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 702
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6621beab308e08d10800000000000000
+      internalID: 2125954126837387878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_2
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 678
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c55d39466729300800000000000000
+      internalID: 257398303062580303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 486
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2177bb5b51c93e960800000000000000
+      internalID: 7630113810752960274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_4
+      rect:
+        serializedVersion: 2
+        x: 1521
+        y: 471
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4da9827c82a988a0800000000000000
+      internalID: -6302327479427551925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 438
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3797d1ce9247671d0800000000000000
+      internalID: -3353365149126919821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 414
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c77ac6b6206eea50800000000000000
+      internalID: 6552280227262396361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_7
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 398
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b1317a14134593d0800000000000000
+      internalID: -3200578206554836556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 389
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4477ee1bed832b870800000000000000
+      internalID: 8697076359524939588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 349
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 795ffd083e7214290800000000000000
+      internalID: -7907995612612659817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_10
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 342
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a1ac34d32d2b9a0800000000000000
+      internalID: -6218676974873077183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pianowave_CRT_screen_overlay_11
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 324
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e7b4e7709e315020800000000000000
+      internalID: 2328711272534947817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: aadd4842a22e803488126d8ace9186ae
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Pianowave_CRT_screen_overlay_0: 7076324848243624839
+      Pianowave_CRT_screen_overlay_1: 2125954126837387878
+      Pianowave_CRT_screen_overlay_10: -6218676974873077183
+      Pianowave_CRT_screen_overlay_11: 2328711272534947817
+      Pianowave_CRT_screen_overlay_2: 257398303062580303
+      Pianowave_CRT_screen_overlay_3: 7630113810752960274
+      Pianowave_CRT_screen_overlay_4: -6302327479427551925
+      Pianowave_CRT_screen_overlay_5: -3353365149126919821
+      Pianowave_CRT_screen_overlay_6: 6552280227262396361
+      Pianowave_CRT_screen_overlay_7: -3200578206554836556
+      Pianowave_CRT_screen_overlay_8: 8697076359524939588
+      Pianowave_CRT_screen_overlay_9: -7907995612612659817
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

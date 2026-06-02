@@ -59,6 +59,11 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void Resume()
+    {
+        GameManager.Instance.TogglePause();
+    }
+
     public void ShowPauseMenu(bool show)
     {
         pausePanel.SetActive(show);
