@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 30d56dfb50cc20e4285d6a50dc035ea5
+guid: e9c5348b5330ab24e9d1344b3f95fbc4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8932368330809542960
-    second: Pianowave_progress_bar_0
+      213: 706893438386517180
+    second: Pianowave_HUD_panel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pianowave_progress_bar_0
+      name: Pianowave_HUD_panel_0
       rect:
         serializedVersion: 2
-        x: 59
-        y: 460
-        width: 917
-        height: 91
+        x: 31
+        y: 367
+        width: 962
+        height: 306
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0390ad0dba526fb70800000000000000
-      internalID: 8932368330809542960
+      spriteID: cb4351146d36fc900800000000000000
+      internalID: 706893438386517180
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 52e3341c5209abd4490c71d7fff632bb
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pianowave_progress_bar_0: 8932368330809542960
+      Pianowave_HUD_panel_0: 706893438386517180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,19 +1,14 @@
 using UnityEngine;
 
-// Draws a rectangle outline + 3 vertical dividers over the hit receptors.
-// Add this to any empty GameObject, position it over the receptors, and adjust
-// Width / Height in the Inspector. All lines update live while the game runs.
-//
-// Setup:
-//   1. Create empty GameObject in PianoWave_Main, name it "ReceptorGrid"
-//   2. Add this component
-//   3. Set Sorting Order higher than both the fill and border of HitReceptorController
-//      so the grid draws on top (e.g. sortingOrder = 5 if receptors use -1 / 0)
+// Draws a rectangle outline + vertical dividers over the hit receptors.
+// Automatically tracks size and position from HitReceptorController / TileSizing
+// so it stays correct on any screen size.
+[DefaultExecutionOrder(210)] // after HitReceptorController (200)
 public class ReceptorGridOverlay : MonoBehaviour
 {
-    [Header("Grid Size")]
-    public float width         = 4f;
-    public float height        = 1f;
+    [Header("Refs (auto-found if left empty)")]
+    public HitReceptorController receptorController;
+    public LaneLayout laneLayout;
 
     [Header("Appearance")]
     public float lineThickness = 0.05f;
@@ -25,7 +20,15 @@ public class ReceptorGridOverlay : MonoBehaviour
     // 0=Top  1=Bottom  2=Left  3=Right  4=Div1  5=Div2  6=Div3
     SpriteRenderer[] lines;
 
-    void Start()        => Build();
+    void Start()
+    {
+        if (receptorController == null)
+            receptorController = FindFirstObjectByType<HitReceptorController>();
+        if (laneLayout == null)
+            laneLayout = FindFirstObjectByType<LaneLayout>();
+        Build();
+    }
+
     void LateUpdate()   => UpdateLayout();
 
     void OnValidate()
@@ -72,23 +75,45 @@ public class ReceptorGridOverlay : MonoBehaviour
     {
         if (lines == null) return;
 
+        float w, h;
+
+        if (receptorController != null && laneLayout != null
+            && laneLayout.lanes != null && laneLayout.lanes.Length > 0)
+        {
+            int   n     = laneLayout.lanes.Length;
+            float leftX  = laneLayout.lanes[0].position.x;
+            float rightX = laneLayout.lanes[n - 1].position.x;
+            float tileW  = receptorController.FillWidth;
+            h = receptorController.FillHeight;
+            // Span from left edge of lane 0 to right edge of lane n-1.
+            w = (rightX - leftX) + tileW;
+
+            // Centre the outline over the receptor group and sit it on the hitline.
+            float cx = (leftX + rightX) * 0.5f;
+            float cy = receptorController.hitLine != null ? receptorController.hitLine.position.y : transform.position.y;
+            transform.position = new Vector3(cx, cy, transform.position.z);
+
+            // Dividers between every pair of adjacent lanes (local X relative to centre).
+            float laneStep = (n > 1) ? (rightX - leftX) / (n - 1) : tileW;
+            float divStart = leftX + laneStep * 0.5f - cx;
+            float innerH2  = Mathf.Max(0f, h - 2f * lineThickness);
+            for (int i = 0; i < 3 && (i + 4) < lines.Length; i++)
+                SetLine(lines[4 + i], lineThickness, innerH2, divStart + laneStep * i, 0f);
+        }
+        else
+        {
+            // Fallback: keep whatever the transform already has; no dividers.
+            w = 1f;
+            h = 1f;
+        }
+
         float t      = lineThickness;
-        float w      = width;
-        float h      = height;
-        // Inner content height — the vertical space between the two horizontal borders.
         float innerH = Mathf.Max(0f, h - 2f * t);
 
-        // Outer rectangle drawn INWARD so no line ever goes past the w×h boundary.
-        // Top/bottom span the full width so they fill the corners; left/right fit between them.
         SetLine(lines[0],  w,       t,  0f,  h * 0.5f - t * 0.5f);   // top
         SetLine(lines[1],  w,       t,  0f, -(h * 0.5f - t * 0.5f)); // bottom
         SetLine(lines[2],  t, innerH, -(w * 0.5f - t * 0.5f), 0f);   // left
         SetLine(lines[3],  t, innerH,  (w * 0.5f - t * 0.5f), 0f);   // right
-
-        // 3 vertical dividers — same innerH so they end exactly at the border edges.
-        SetLine(lines[4],  t, innerH,  -w / 4f, 0f);
-        SetLine(lines[5],  t, innerH,   0f,      0f);
-        SetLine(lines[6],  t, innerH,   w / 4f, 0f);
     }
 
     static void SetLine(SpriteRenderer sr, float w, float h, float x, float y)

@@ -61,12 +61,31 @@ public class HitReceptorController : MonoBehaviour
     [Range(1f, 2f)] public float pulseScalePeak = 1.20f;
     public float pulseDuration = 0.18f;
 
+    [Header("Group Outline")]
+    [Tooltip("Draw a shared border around all receptor slots.")]
+    public bool   showGroupOutline    = true;
+    public float  outlineThickness    = 0.05f;
+    public Color  outlineColor        = Color.black;
+    public int    outlineSortingOrder = 5;
+    [Tooltip("Sorting layer for the outline. Uses the receptor layer if left empty.")]
+    public string outlineSortingLayer = "";
+
     [Header("Tutorial Hint")]
     public bool showTutorialHint = true;
     public float hintDuration    = 4f;
     [Tooltip("Assign a TextMeshProUGUI from your UI canvas, or leave null to " +
              "auto-create a world-space hint above the receptors.")]
     public TextMeshProUGUI hintText;
+
+    // ── computed each LateUpdate — read by ReceptorGridOverlay ───────────────
+
+    /// <summary>Width of each receptor fill in world units, updated every LateUpdate.</summary>
+    public float FillWidth  { get; private set; }
+    /// <summary>Height of each receptor fill in world units, updated every LateUpdate.</summary>
+    public float FillHeight { get; private set; }
+
+    // ── outline (0=Top 1=Bottom 2=Left 3=Right 4..6=Dividers) ────────────────
+    SpriteRenderer[] outlineLines;
 
     // ── runtime ───────────────────────────────────────────────────────────────
 
@@ -108,6 +127,9 @@ public class HitReceptorController : MonoBehaviour
 
         for (int i = 0; i < count; i++)
             receptors[i] = BuildReceptor(i);
+
+        if (showGroupOutline)
+            BuildGroupOutline();
 
         if (showTutorialHint)
             SpawnHint();
@@ -161,6 +183,8 @@ public class HitReceptorController : MonoBehaviour
         float tileW      = TileSizing.CurrentTileWidthWorld  * widthFraction;
         float tileH      = TileSizing.CurrentTileHeightWorld;
         float receptorH  = Mathf.Max(0.05f, tileH * heightFraction);
+        FillWidth  = tileW;
+        FillHeight = receptorH;
         float border     = Mathf.Min(borderThicknessWorld, receptorH * 0.25f);
         float hitY       = hitLine.position.y;
 
@@ -187,6 +211,8 @@ public class HitReceptorController : MonoBehaviour
             if (pulseTimers[i] <= 0f)
                 SetAlpha(receptors[i].fill, fillAlpha);
         }
+
+        UpdateGroupOutline(tileW, receptorH, hitY);
     }
 
     void OnValidate()
@@ -211,6 +237,75 @@ public class HitReceptorController : MonoBehaviour
     {
         if (sr == null || mat == null) return;
         sr.material = mat;
+    }
+
+    // ── group outline ─────────────────────────────────────────────────────────
+
+    void BuildGroupOutline()
+    {
+        string[] names = { "OL_Top", "OL_Bottom", "OL_Left", "OL_Right", "OL_Div1", "OL_Div2", "OL_Div3" };
+        outlineLines = new SpriteRenderer[names.Length];
+
+        var root = new GameObject("GroupOutlineRoot");
+        root.transform.SetParent(transform, worldPositionStays: false);
+
+        string layer = !string.IsNullOrEmpty(outlineSortingLayer) ? outlineSortingLayer : sortingLayerName;
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            var go    = new GameObject(names[i]);
+            go.transform.SetParent(root.transform, worldPositionStays: false);
+
+            var sr    = go.AddComponent<SpriteRenderer>();
+            var tex   = Texture2D.whiteTexture;
+            sr.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height),
+                                      new Vector2(0.5f, 0.5f), 1f);
+            sr.color  = outlineColor;
+            sr.sortingOrder = outlineSortingOrder;
+            if (!string.IsNullOrEmpty(layer)) sr.sortingLayerName = layer;
+            outlineLines[i] = sr;
+        }
+    }
+
+    void UpdateGroupOutline(float tileW, float receptorH, float hitY)
+    {
+        if (outlineLines == null || laneLayout.lanes.Length == 0) return;
+
+        int   n     = laneLayout.lanes.Length;
+        float leftX = laneLayout.lanes[0].position.x;
+        float rightX= laneLayout.lanes[n - 1].position.x;
+        float w     = (rightX - leftX) + tileW;
+        float h     = receptorH;
+        float cx    = (leftX + rightX) * 0.5f;
+        float z     = transform.position.z;
+        float t     = outlineThickness;
+        float ih    = Mathf.Max(0f, h - 2f * t);
+
+        // Each line is placed by world position so parent scale never affects placement.
+        SetOutlineLineWorld(outlineLines[0], cx,                  hitY + h*0.5f - t*0.5f, w, t,  z);
+        SetOutlineLineWorld(outlineLines[1], cx,                  hitY - h*0.5f + t*0.5f, w, t,  z);
+        SetOutlineLineWorld(outlineLines[2], cx - w*0.5f + t*0.5f, hitY,                  t, ih, z);
+        SetOutlineLineWorld(outlineLines[3], cx + w*0.5f - t*0.5f, hitY,                  t, ih, z);
+
+        float step  = (n > 1) ? (rightX - leftX) / (n - 1) : tileW;
+        float divX0 = leftX + step * 0.5f;
+        for (int i = 0; i < 3 && (i + 4) < outlineLines.Length; i++)
+            SetOutlineLineWorld(outlineLines[4 + i], divX0 + step * i, hitY, t, ih, z);
+    }
+
+    // Sets a line sprite to a world position with world-unit width/height,
+    // compensating for any parent-transform scale so sizes are always correct.
+    static void SetOutlineLineWorld(SpriteRenderer sr, float wx, float wy,
+                                    float w, float h, float wz)
+    {
+        if (sr == null) return;
+        Transform tf = sr.transform;
+        tf.position  = new Vector3(wx, wy, wz);
+        Vector3 ps   = tf.parent != null ? tf.parent.lossyScale : Vector3.one;
+        tf.localScale = new Vector3(
+            ps.x > 0f ? w / ps.x : w,
+            ps.y > 0f ? h / ps.y : h,
+            1f);
     }
 
     // ── public API ────────────────────────────────────────────────────────────

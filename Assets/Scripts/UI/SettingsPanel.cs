@@ -15,15 +15,25 @@ public class SettingsPanel : MonoBehaviour
     [Tooltip("DRAG → SFXSlider")]
     public Slider sfxSlider;
 
+    [Header("Master Dial")]
+    [Tooltip("DRAG → SoundDial GameObject")]
+    public SoundDial masterDial;
+
     [Header("Back Button")]
     [Tooltip("DRAG → BackButton inside SettingsPanel")]
     public Button backButton;
+
+    [Header("Fullscreen Toggle")]
+    [Tooltip("DRAG → FullscreenToggle inside SettingsPanel")]
+    public Toggle fullscreenToggle;
 
     [Header("Slider Sprites")]
     [Tooltip("DRAG → Pianowave_slider_panel — applied as the Background image on every slider.")]
     public Sprite sliderBackgroundSprite;
     [Tooltip("DRAG → Pianowave_buttons_images_3 — applied as the Handle image on every slider.")]
     public Sprite sliderHandleSprite;
+    [Tooltip("DRAG → Pianowave_progress_bar — applied as the Checkmark image on the fullscreen toggle.")]
+    public Sprite toggleCheckmarkSprite;
 
     [Header("Handle Size")]
     [Tooltip("Width of the slider handle in canvas units. Increase to make it wider.")]
@@ -45,9 +55,13 @@ public class SettingsPanel : MonoBehaviour
         ApplySprites(musicSlider,  _musicHandle);
         ApplySprites(sfxSlider,    _sfxHandle);
 
+        ApplyToggleSprites(fullscreenToggle);
+
         masterSlider?.onValueChanged.AddListener(OnMasterChanged);
         musicSlider?.onValueChanged.AddListener(OnMusicChanged);
         sfxSlider?.onValueChanged.AddListener(OnSFXChanged);
+        masterDial?.onValueChanged.AddListener(OnDialMasterChanged);
+        fullscreenToggle?.onValueChanged.AddListener(OnFullscreenChanged);
 
         backButton?.onClick.AddListener(OnBack);
     }
@@ -65,12 +79,22 @@ public class SettingsPanel : MonoBehaviour
         masterSlider?.SetValueWithoutNotify(GameSettings.Instance.MasterVolume);
         musicSlider?.SetValueWithoutNotify(GameSettings.Instance.MusicVolume);
         sfxSlider?.SetValueWithoutNotify(GameSettings.Instance.SFXVolume);
+        fullscreenToggle?.SetIsOnWithoutNotify(GameSettings.Instance.IsFullscreen);
+        masterDial?.SetValueWithoutNotify(GameSettings.Instance.MasterVolume);
     }
 
     void OnMasterChanged(float v)
     {
         AudioListener.volume = v;
         if (GameSettings.Instance != null) GameSettings.Instance.MasterVolume = v;
+        masterDial?.SetValueWithoutNotify(v);
+    }
+
+    void OnDialMasterChanged(float v)
+    {
+        AudioListener.volume = v;
+        if (GameSettings.Instance != null) GameSettings.Instance.MasterVolume = v;
+        masterSlider?.SetValueWithoutNotify(v);
     }
 
     void OnMusicChanged(float v)
@@ -83,6 +107,12 @@ public class SettingsPanel : MonoBehaviour
     {
         if (AudioManager.Instance != null) AudioManager.Instance.SetSFXVolume(v);
         if (GameSettings.Instance != null) GameSettings.Instance.SFXVolume = v;
+    }
+
+    void OnFullscreenChanged(bool value)
+    {
+        Screen.fullScreen = value;
+        if (GameSettings.Instance != null) GameSettings.Instance.IsFullscreen = value;
     }
 
     void OnBack()
@@ -120,5 +150,18 @@ public class SettingsPanel : MonoBehaviour
         size.x = handleWidth;
         if (handleHeight > 0f) size.y = handleHeight;
         handle.rectTransform.sizeDelta = size;
+    }
+
+    void ApplyToggleSprites(Toggle toggle)
+    {
+        if (toggle == null) return;
+
+        var bg = toggle.transform.Find("Background")?.GetComponent<Image>();
+        if (bg != null && sliderBackgroundSprite != null)
+            bg.sprite = sliderBackgroundSprite;
+
+        var checkmark = toggle.transform.Find("Background/Checkmark")?.GetComponent<Image>();
+        if (checkmark != null && toggleCheckmarkSprite != null)
+            checkmark.sprite = toggleCheckmarkSprite;
     }
 }

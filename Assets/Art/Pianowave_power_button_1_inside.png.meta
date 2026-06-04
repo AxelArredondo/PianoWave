@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 30d56dfb50cc20e4285d6a50dc035ea5
+guid: 2f4f230f82c05e647bbc1844491c785f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8932368330809542960
-    second: Pianowave_progress_bar_0
+      213: 658913962240741556
+    second: Pianowave_power_button_1_inside_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pianowave_progress_bar_0
+      name: Pianowave_power_button_1_inside_0
       rect:
         serializedVersion: 2
-        x: 59
-        y: 460
-        width: 917
-        height: 91
+        x: 306
+        y: 583
+        width: 428
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0390ad0dba526fb70800000000000000
-      internalID: 8932368330809542960
+      spriteID: 4b097e0f1cee42900800000000000000
+      internalID: 658913962240741556
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 52e3341c5209abd4490c71d7fff632bb
+    spriteID: 97d5f8e23e875ab48b71484869c744e0
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pianowave_progress_bar_0: 8932368330809542960
+      Pianowave_power_button_1_inside_0: 658913962240741556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
