@@ -12,12 +12,16 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainMenuPanel;
     [Tooltip("Drag LevelSelectPanel here.")]
     public GameObject levelSelectPanel;
+    [Tooltip("Drag SettingsPanel here.")]
+    public GameObject settingsPanel;
 
     [Header("Main Menu Buttons")]
     [Tooltip("Opens the Level Select panel.")]
     public Button levelsButton;
     [Tooltip("Starts Endless/Random mode.")]
     public Button endlessButton;
+    [Tooltip("Opens the Settings panel.")]
+    public Button settingsButton;
 
     [Header("Level Select Buttons")]
     [Tooltip("Unlocked — starts Level 1.")]
@@ -31,6 +35,12 @@ public class MainMenuManager : MonoBehaviour
     [Tooltip("Returns to Main Menu.")]
     public Button backButton;
 
+    [Header("Button SFX")]
+    [Tooltip("Drag epic_stock_media-ui-button-heavy-button-press-metallic-333826 here.")]
+    public AudioClip buttonClickClip;
+
+    private AudioSource _sfxSource;
+
     void Start()
     {
         if (GameSettings.Instance == null)
@@ -39,11 +49,15 @@ public class MainMenuManager : MonoBehaviour
             go.AddComponent<GameSettings>();
         }
 
+        _sfxSource = gameObject.AddComponent<AudioSource>();
+        _sfxSource.playOnAwake = false;
+
         AutoWireByName();
         WireListeners();
         LockFutureLevels();
         ShowPanel(mainMenuPanel);
         HidePanel(levelSelectPanel);
+        HidePanel(settingsPanel);
         LogWarnings();
     }
 
@@ -58,6 +72,18 @@ public class MainMenuManager : MonoBehaviour
     public void BackToMainMenu()
     {
         HidePanel(levelSelectPanel);
+        ShowPanel(mainMenuPanel);
+    }
+
+    public void OpenSettings()
+    {
+        HidePanel(mainMenuPanel);
+        ShowPanel(settingsPanel);
+    }
+
+    public void BackFromSettings()
+    {
+        HidePanel(settingsPanel);
         ShowPanel(mainMenuPanel);
     }
 
@@ -89,10 +115,27 @@ public class MainMenuManager : MonoBehaviour
 
     // ── Helpers ─────────────────────────────────────────────────────────────────
 
+    void PlayButtonClick()
+    {
+        if (_sfxSource == null || buttonClickClip == null) return;
+        float vol = GameSettings.Instance != null ? GameSettings.Instance.SFXVolume : 1f;
+        _sfxSource.PlayOneShot(buttonClickClip, vol);
+    }
+
     void WireListeners()
     {
+        levelsButton?.onClick.AddListener(PlayButtonClick);
+        endlessButton?.onClick.AddListener(PlayButtonClick);
+        settingsButton?.onClick.AddListener(PlayButtonClick);
+        level1Button?.onClick.AddListener(PlayButtonClick);
+        level2Button?.onClick.AddListener(PlayButtonClick);
+        level3Button?.onClick.AddListener(PlayButtonClick);
+        level4Button?.onClick.AddListener(PlayButtonClick);
+        backButton?.onClick.AddListener(PlayButtonClick);
+
         levelsButton?.onClick.AddListener(OpenLevelSelect);
         endlessButton?.onClick.AddListener(PlayRandomMode);
+        settingsButton?.onClick.AddListener(OpenSettings);
 
         level1Button?.onClick.AddListener(() => PlayLevel("Charts/Level1"));
         level2Button?.onClick.AddListener(() => PlayLevel("Charts/Level2"));
@@ -125,6 +168,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (levelsButton  == null) levelsButton  = FindButtonByName("LevelsButton");
         if (endlessButton == null) endlessButton = FindButtonByName("EndlessButton") ?? FindButtonByName("RandomButton");
+        if (settingsButton == null) settingsButton = FindButtonByName("SettingsButton");
         if (level1Button  == null) level1Button  = FindButtonByName("Level1Button");
         if (level2Button  == null) level2Button  = FindButtonByName("Level2Button");
         if (level3Button  == null) level3Button  = FindButtonByName("Level3Button");
@@ -136,8 +180,10 @@ public class MainMenuManager : MonoBehaviour
     {
         if (mainMenuPanel    == null) Debug.LogWarning("[MainMenuManager] mainMenuPanel not assigned.");
         if (levelSelectPanel == null) Debug.LogWarning("[MainMenuManager] levelSelectPanel not assigned.");
+        if (settingsPanel    == null) Debug.LogWarning("[MainMenuManager] settingsPanel not assigned.");
         if (levelsButton     == null) Debug.LogWarning("[MainMenuManager] LevelsButton not found.");
         if (endlessButton    == null) Debug.LogWarning("[MainMenuManager] EndlessButton not found.");
+        if (settingsButton   == null) Debug.LogWarning("[MainMenuManager] SettingsButton not found.");
         if (level1Button     == null) Debug.LogWarning("[MainMenuManager] Level1Button not found.");
         if (backButton       == null) Debug.LogWarning("[MainMenuManager] BackButton not found.");
     }

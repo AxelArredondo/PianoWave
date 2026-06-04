@@ -349,6 +349,7 @@ public class Tile : MonoBehaviour
 
     void Perfect()
     {
+        AudioManager.Instance?.PlayHitSFX();
         GameManager.Instance.RegisterPerfect();
         float scale  = noteType == "accent" ? hitScalePerfect * 1.40f : hitScalePerfect;
         bool  isHold = noteType == "hold" && durationBeats > 0f;
@@ -362,6 +363,7 @@ public class Tile : MonoBehaviour
 
     void Good()
     {
+        AudioManager.Instance?.PlayHitSFX();
         GameManager.Instance.RegisterGood();
         float scale  = noteType == "accent" ? hitScaleGood * 1.30f : hitScaleGood;
         bool  isHold = noteType == "hold" && durationBeats > 0f;

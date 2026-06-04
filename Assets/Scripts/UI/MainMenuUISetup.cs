@@ -15,6 +15,11 @@ public class MainMenuUISetup : MonoBehaviour
     [Tooltip("DRAG → ForegroundFXImage\nOptional foreground FX layer (particles, scanlines, stars). Pulses slowly.")]
     public Image foregroundFXImage;
 
+    [Header("Background Position")]
+    [Tooltip("Shifts all background layers up (positive) or down (negative) in canvas units. " +
+             "Set images to anchoredPosition Y = 0 in the scene; tune here.")]
+    public float heightOffset = 0f;
+
     // ── TV FRAME ────────────────────────────────────────────────────────────────
     [Header("TV Frame")]
     [Tooltip("DRAG → CRTFrameImage\nYour retro CRT TV frame sprite. Covers the TVLayer RectTransform.")]
@@ -35,6 +40,9 @@ public class MainMenuUISetup : MonoBehaviour
 
     [Tooltip("DRAG → EndlessButton\nThe button that starts Endless mode (RandomMode). Must have a Button component.")]
     public Button endlessButton;
+
+    [Tooltip("DRAG → SettingsButton\nThe button that opens the Settings panel. Must have a Button component.")]
+    public Button settingsButton;
 
     // ── LOGO PULSE ──────────────────────────────────────────────────────────────
     [Header("Logo Pulse")]
@@ -59,6 +67,8 @@ public class MainMenuUISetup : MonoBehaviour
     public Image levelsButtonGlow;
     [Tooltip("DRAG → a separate glow Image child inside EndlessButton.")]
     public Image endlessButtonGlow;
+    [Tooltip("DRAG → a separate glow Image child inside SettingsButton.")]
+    public Image settingsButtonGlow;
 
     [Header("Button Glow — Level Select (optional)")]
     [Tooltip("DRAG → a separate glow Image child inside Level1Button.")]
@@ -82,8 +92,22 @@ public class MainMenuUISetup : MonoBehaviour
     void Start()
     {
         LogInspectorGuide();
+        ApplyHeightOffset();
         StartAnimations();
         SetupButtonGlows();
+    }
+
+    void ApplyHeightOffset()
+    {
+        ShiftImage(foregroundFXImage);
+    }
+
+    void ShiftImage(Graphic g)
+    {
+        if (g == null) return;
+        var pos = g.rectTransform.anchoredPosition;
+        pos.y = heightOffset;
+        g.rectTransform.anchoredPosition = pos;
     }
 
     void LogInspectorGuide()
@@ -97,6 +121,7 @@ public class MainMenuUISetup : MonoBehaviour
             "  logoImage             ← PianoWaveLogoImage    (your logo sprite)\n" +
             "  levelsButton          ← LevelsButton          (opens Level Select panel)\n" +
             "  endlessButton         ← EndlessButton         (starts RandomMode)\n" +
+            "  settingsButton        ← SettingsButton        (opens Settings panel)\n" +
             "  level1ButtonGlow      ← Glow image inside Level1Button (optional)\n" +
             "  backButtonGlow        ← Glow image inside BackButton   (optional)"
         );
@@ -142,6 +167,7 @@ public class MainMenuUISetup : MonoBehaviour
     {
         WireGlow(levelsButton, levelsButtonGlow);
         WireGlow(endlessButton, endlessButtonGlow);
+        WireGlow(settingsButton, settingsButtonGlow);
         WireGlow(FindButton("Level1Button"), level1ButtonGlow);
         WireGlow(FindButton("BackButton"),   backButtonGlow);
     }
