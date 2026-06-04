@@ -28,6 +28,9 @@ public class MainMenuUISetup : MonoBehaviour
     [Tooltip("DRAG → CRTScreenOverlayImage\nScanlines / glare overlay inside the TV screen.\nRaycast Target is forced OFF automatically so buttons still work.")]
     public Image crtScreenOverlayImage;
 
+    [Tooltip("DRAG → CRTScreenOverlayImageFull\nFull-alpha overlay, hidden by default. Shown at full opacity when power is on.")]
+    public Image crtScreenOverlayImageFull;
+
     // ── LOGO ────────────────────────────────────────────────────────────────────
     [Header("Logo / Title")]
     [Tooltip("DRAG → PianoWaveLogoImage\nYour PianoWave logo sprite. Placed at the top of the TV screen area.")]
@@ -61,6 +64,9 @@ public class MainMenuUISetup : MonoBehaviour
     [Range(0f, 0.3f)]  public float crtFlickerStrength = 0.08f;
     [Range(0.05f, 0.5f)] public float crtFlickerInterval = 0.12f;
 
+    float _crtBaseAlphaDefault;
+    float _crtFlickerStrengthDefault;
+
     // ── BUTTON GLOW ─────────────────────────────────────────────────────────────
     [Header("Button Glow — Main Menu (optional)")]
     [Tooltip("DRAG → a separate glow Image child inside LevelsButton (not the button image itself).")]
@@ -87,14 +93,46 @@ public class MainMenuUISetup : MonoBehaviour
     {
         if (crtScreenOverlayImage != null)
             crtScreenOverlayImage.raycastTarget = false;
+
+        if (crtScreenOverlayImageFull != null)
+        {
+            crtScreenOverlayImageFull.raycastTarget = false;
+            var c = crtScreenOverlayImageFull.color;
+            c.a = 0f;
+            crtScreenOverlayImageFull.color = c;
+        }
     }
 
     void Start()
     {
+        _crtBaseAlphaDefault = crtBaseAlpha;
+        _crtFlickerStrengthDefault = crtFlickerStrength;
         LogInspectorGuide();
         ApplyHeightOffset();
         StartAnimations();
         SetupButtonGlows();
+    }
+
+    // Called by PowerButton when toggled. When on, flicker range is [0.9, 1.0].
+    public void SetCRTPoweredOn(bool on)
+    {
+        if (on)
+        {
+            crtBaseAlpha       = 0.95f;
+            crtFlickerStrength = 0.05f;
+        }
+        else
+        {
+            crtBaseAlpha       = _crtBaseAlphaDefault;
+            crtFlickerStrength = _crtFlickerStrengthDefault;
+        }
+
+        if (crtScreenOverlayImageFull != null)
+        {
+            var c = crtScreenOverlayImageFull.color;
+            c.a = on ? 1f : 0f;
+            crtScreenOverlayImageFull.color = c;
+        }
     }
 
     void ApplyHeightOffset()
