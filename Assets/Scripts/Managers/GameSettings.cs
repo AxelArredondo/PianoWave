@@ -11,7 +11,7 @@ public class GameSettings : MonoBehaviour
     [Range(0f, 1f)] public float MasterVolume = 1f;
     [Range(0f, 1f)] public float MusicVolume  = 1f;
     [Range(0f, 1f)] public float SFXVolume    = 1f;
-    public bool IsFullscreen = true;
+    public bool IsFullscreen = false;
 
     void Awake()
     {
@@ -32,8 +32,10 @@ public class GameSettings : MonoBehaviour
         MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         MusicVolume  = PlayerPrefs.GetFloat("MusicVolume",  1f);
         SFXVolume    = PlayerPrefs.GetFloat("SFXVolume",    1f);
-        IsFullscreen = PlayerPrefs.GetInt("IsFullscreen", 1) == 1;
+        IsFullscreen = PlayerPrefs.GetInt("IsFullscreen", 0) == 1;
+#if !UNITY_WEBGL
         Screen.fullScreen = IsFullscreen;
+#endif
     }
 
     public void SaveVolumes()

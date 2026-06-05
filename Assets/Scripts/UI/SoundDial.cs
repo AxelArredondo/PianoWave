@@ -57,6 +57,7 @@ public class SoundDial : MonoBehaviour, IDragHandler
     // Unity Z rotation is CCW-positive, so we negate the CW angle.
     void ApplyRotation(float normalizedValue)
     {
+        if (_rt == null) _rt = GetComponent<RectTransform>();
         float angle = Mathf.Lerp(minAngle, maxAngle, normalizedValue);
         _rt.localRotation = Quaternion.Euler(0f, 0f, -angle);
     }

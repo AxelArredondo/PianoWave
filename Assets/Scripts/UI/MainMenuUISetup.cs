@@ -132,6 +132,7 @@ public class MainMenuUISetup : MonoBehaviour
             var c = crtScreenOverlayImageFull.color;
             c.a = on ? 1f : 0f;
             crtScreenOverlayImageFull.color = c;
+            crtScreenOverlayImageFull.raycastTarget = on;
         }
     }
 

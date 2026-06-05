@@ -23,6 +23,10 @@ public class UIManager : MonoBehaviour
     [Header("Pause/Retry Background")]
     public Image pauseBackground;
 
+    [Header("Settings Button")]
+    [Tooltip("Drag the in-game settings/cog button here — opens the pause panel.")]
+    public Button settingsButton;
+
     [Header("Button SFX")]
     [Tooltip("Drag epic_stock_media-ui-button-heavy-button-press-metallic-333826 here.")]
     public AudioClip buttonClickClip;
@@ -37,6 +41,8 @@ public class UIManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         pausePanel.SetActive(false);
         if (pauseBackground != null) { pauseBackground.enabled = false; pauseBackground.raycastTarget = false; }
+
+        settingsButton?.onClick.AddListener(OnSettingsButtonPressed);
     }
 
     void PlayButtonClick()
@@ -83,6 +89,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void Resume()
+    {
+        PlayButtonClick();
+        GameManager.Instance.TogglePause();
+    }
+
+    void OnSettingsButtonPressed()
     {
         PlayButtonClick();
         GameManager.Instance.TogglePause();
