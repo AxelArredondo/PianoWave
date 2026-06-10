@@ -125,6 +125,12 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
 
+        if (TapDebugMode.Instance != null && TapDebugMode.Instance.debugMode)
+        {
+            TapDebugMode.Instance.TriggerDebugPause();
+            return;
+        }
+
         SpawnPopup("MISS", missMaterial, 34f);
 
         if (unlimitedAttempts) return;

@@ -50,6 +50,11 @@ ExportedObj/
 *.VC.db
 
 # Unity3D generated meta files
+AppBuild/PianoWave_BackUpThisFolder_ButDontShipItWithYourGame/
+AppBuild/PianoWave_BurstDebugInformation_DoNotShip/
+PianoWave_BackUpThisFolder_ButDontShipItWithYourGame/
+Piano Wave_BurstDebugInformation_DoNotShip/
+user.keystore
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
