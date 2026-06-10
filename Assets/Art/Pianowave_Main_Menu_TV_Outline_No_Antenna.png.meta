@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d7653a0744848c846841e02882e3efab
+guid: 5b2b1f134cda54a47b080850fb247313
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8380632496090605201
-    second: Pianowave_Main_Menu_TV_Outline_0
+      213: 5064260908977523402
+    second: Pianowave_Main_Menu_TV_Outline_No_Antenna_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pianowave_Main_Menu_TV_Outline_0
+      name: Pianowave_Main_Menu_TV_Outline_No_Antenna_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,37 +134,15 @@ TextureImporter:
         width: 1024
         height: 1518
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f699c65b52302bb80800000000000000
-      internalID: -8380632496090605201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pianowave_Main_Menu_TV_Outline_1
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 253
-        width: 824
-        height: 919
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb8e0a0b1cf7bf94bb74eaeafb73ca92
-      internalID: -397064001
+      spriteID: aca8081177ed74640800000000000000
+      internalID: 5064260908977523402
       vertices: []
       indices: 
       edges: []
@@ -173,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 099987d5b51f1e04d95dd0c1a9e35ad5
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -183,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pianowave_Main_Menu_TV_Outline_0: -8380632496090605201
-      Pianowave_Main_Menu_TV_Outline_1: -397064001
+      Pianowave_Main_Menu_TV_Outline_No_Antenna_0: 5064260908977523402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

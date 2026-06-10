@@ -66,25 +66,39 @@ public class MainMenuManager : MonoBehaviour
     public void OpenLevelSelect()
     {
         HidePanel(mainMenuPanel);
+        HidePanel(settingsPanel);
         ShowPanel(levelSelectPanel);
+        ChannelButton.NotifyChannelChanged(ChannelTarget.Levels);
     }
 
     public void BackToMainMenu()
     {
         HidePanel(levelSelectPanel);
         ShowPanel(mainMenuPanel);
+        ChannelButton.NotifyChannelChanged(ChannelTarget.Main);
     }
 
     public void OpenSettings()
     {
         HidePanel(mainMenuPanel);
+        HidePanel(levelSelectPanel);
         ShowPanel(settingsPanel);
+        ChannelButton.NotifyChannelChanged(ChannelTarget.Settings);
     }
 
     public void BackFromSettings()
     {
         HidePanel(settingsPanel);
         ShowPanel(mainMenuPanel);
+        ChannelButton.NotifyChannelChanged(ChannelTarget.Main);
+    }
+
+    public void GoToMain()
+    {
+        HidePanel(levelSelectPanel);
+        HidePanel(settingsPanel);
+        ShowPanel(mainMenuPanel);
+        ChannelButton.NotifyChannelChanged(ChannelTarget.Main);
     }
 
     // ── Game Launch ─────────────────────────────────────────────────────────────
