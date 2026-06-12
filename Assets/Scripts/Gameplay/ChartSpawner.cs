@@ -161,6 +161,15 @@ public class ChartSpawner : MonoBehaviour
                 bgIndex++;
             }
         }
+
+        // Level complete: all notes have been spawned and every tile has cleared the field.
+        if (musicStarted && chart.notes.Length > 0
+            && noteIndex >= chart.notes.Length
+            && Tile.ActiveTiles.Count == 0)
+        {
+            GameManager.Instance?.TriggerLevelComplete();
+            enabled = false;
+        }
     }
 
     // ── timing helpers ─────────────────────────────────────────────────────────

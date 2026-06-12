@@ -23,6 +23,13 @@ public class UIManager : MonoBehaviour
     [Header("Pause/Retry Background")]
     public Image pauseBackground;
 
+    [Header("Level Complete UI")]
+    public GameObject levelCompletePanel;
+    public TextMeshProUGUI levelCompleteFinalScoreText;
+    public TextMeshProUGUI levelCompleteHighScoreText;
+    [Tooltip("Shown only when the player beats their previous best.")]
+    public TextMeshProUGUI levelCompleteNewHSText;
+
     [Header("Settings Button")]
     [Tooltip("Drag the in-game settings/cog button here — opens the pause panel.")]
     public Button settingsButton;
@@ -40,6 +47,7 @@ public class UIManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
         pausePanel.SetActive(false);
+        if (levelCompletePanel != null) levelCompletePanel.SetActive(false);
         if (pauseBackground != null) { pauseBackground.enabled = false; pauseBackground.raycastTarget = false; }
 
         settingsButton?.onClick.AddListener(OnSettingsButtonPressed);
@@ -106,5 +114,22 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(show);
     }
 
+    public void ShowLevelComplete(int score, int highScore, bool isNewHighScore)
+    {
+        if (pauseBackground != null) pauseBackground.enabled = true;
+        levelCompletePanel.SetActive(true);
+        if (levelCompleteFinalScoreText != null)
+            levelCompleteFinalScoreText.text = "Score: " + score.ToString("N0");
+        if (levelCompleteHighScoreText != null)
+            levelCompleteHighScoreText.text = "Best: " + highScore.ToString("N0");
+        if (levelCompleteNewHSText != null)
+            levelCompleteNewHSText.gameObject.SetActive(isNewHighScore);
+    }
 
+    public void NextLevel()
+    {
+        PlayButtonClick();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
 }

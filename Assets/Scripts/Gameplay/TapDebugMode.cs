@@ -12,7 +12,7 @@ public class TapDebugMode : MonoBehaviour
 {
     public static TapDebugMode Instance { get; private set; }
 
-    [Header("Debug Mode")]
+    [HideInInspector]
     public bool debugMode = false;
 
     [Header("Scene Refs  (auto-found if blank)")]

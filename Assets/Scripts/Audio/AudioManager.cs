@@ -114,6 +114,14 @@ public class AudioManager : MonoBehaviour
         ambientSources[i].Play();
     }
 
+    // Set the runtime volume of an ambient entry by its clip name.
+    public void SetAmbientVolume(string clipName, float volume)
+    {
+        int i = FindAmbientIndex(clipName);
+        if (i < 0 || ambientSources == null || ambientSources[i] == null) return;
+        ambientSources[i].volume = volume;
+    }
+
     // Stop an ambient entry by its clip name.
     public void StopAmbient(string clipName)
     {

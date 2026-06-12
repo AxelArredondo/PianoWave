@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public bool IsGameOver { get; private set; }
-    public bool IsPaused { get; private set; }
+    public bool IsGameOver     { get; private set; }
+    public bool IsPaused       { get; private set; }
+    public bool IsLevelComplete { get; private set; }
 
     [Header("Game Stats")]
     public int score = 0;
     public int attempts = 5;
     public float timeAlive = 0f;
 
-    [Header("Debug")]
+    [HideInInspector]
     public bool unlimitedAttempts = false;
 
     [Header("UI")]
@@ -45,9 +47,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        IsGameOver = false;
-        IsPaused = false;
-        Time.timeScale = 1f;
+        IsGameOver      = false;
+        IsPaused        = false;
+        IsLevelComplete = false;
+        Time.timeScale  = 1f;
     }
 
     void Update()
@@ -57,11 +60,10 @@ public class GameManager : MonoBehaviour
             TogglePause();
         }
 
+#if UNITY_EDITOR
         if (Keyboard.current != null && Keyboard.current.uKey.wasPressedThisFrame)
-        {
             unlimitedAttempts = !unlimitedAttempts;
-            Debug.Log("Unlimited attempts: " + unlimitedAttempts);
-        }
+#endif
 
         if (IsGameOver || IsPaused) return;
 
@@ -165,6 +167,16 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
 
+        if (GameSettings.Instance?.Mode == GameMode.RandomMode)
+        {
+            int prevBest = PlayerPrefs.GetInt("EndlessBestScore", 0);
+            if (score > prevBest)
+            {
+                PlayerPrefs.SetInt("EndlessBestScore", score);
+                PlayerPrefs.Save();
+            }
+        }
+
         AudioManager.Instance?.StopAndReset();
         AudioManager.Instance?.PlayGameOverSFX();
         AudioManager.Instance?.PlayGameOverLoop();
@@ -173,9 +185,30 @@ public class GameManager : MonoBehaviour
         uiManager.ShowGameOver(score, timeAlive);
     }
 
+    public void TriggerLevelComplete()
+    {
+        if (IsGameOver || IsLevelComplete) return;
+
+        IsLevelComplete = true;
+
+        string chartPath = GameSettings.Instance?.ChartResourcePath ?? "Charts/Level1";
+        string key = "HighScore_" + chartPath.Replace("Charts/", "");
+        int prevHS   = PlayerPrefs.GetInt(key, 0);
+        bool isNewHS = score > prevHS;
+        if (isNewHS)
+        {
+            PlayerPrefs.SetInt(key, score);
+            PlayerPrefs.Save();
+        }
+
+        Time.timeScale = 0f;
+        AudioManager.Instance?.Pause();
+        uiManager.ShowLevelComplete(score, isNewHS ? score : prevHS, isNewHS);
+    }
+
     public void TogglePause()
     {
-        if (IsGameOver) return;
+        if (IsGameOver || IsLevelComplete) return;
 
         IsPaused = !IsPaused;
 

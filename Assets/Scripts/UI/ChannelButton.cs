@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ChannelTarget { Main, Levels, Settings }
+public enum ChannelTarget { Main, Levels, Settings, Stats }
 
 /// Attach to ChannelButtonMain, ChannelButtonLevels, ChannelButtonSettings.
 /// Drag the inner "pressed/dark" child GameObject onto buttonInside in the Inspector.
@@ -50,6 +50,7 @@ public class ChannelButton : MonoBehaviour
             case ChannelTarget.Main:    _menuManager?.GoToMain();        break;
             case ChannelTarget.Levels:  _menuManager?.OpenLevelSelect(); break;
             case ChannelTarget.Settings: _menuManager?.OpenSettings();   break;
+            case ChannelTarget.Stats:  _menuManager?.OpenStats();        break;
         }
 
         NotifyChannelChanged(target);

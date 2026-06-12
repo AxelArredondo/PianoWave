@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
 
     // ── tap debug ──────────────────────────────────────────────────────────────
     [Header("Tap Debug")]
-    [SerializeField] private bool showTapDebug = true;
+    [SerializeField] private bool showTapDebug = false;
     [SerializeField] private float tapMarkerDuration = 1.5f;
     private Sprite _debugCircleSprite;
 
@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
 
     // ── singleton guard ────────────────────────────────────────────────────────
     private static InputManager _instance;
+    public static InputManager Instance => _instance;
 
     // ── per-tap deduplication ─────────────────────────────────────────────────
     // _tapCounter increments on every unique physical tap (one per Began event).
@@ -45,6 +46,11 @@ public class InputManager : MonoBehaviour
     // ── multi-touch hold tracking ─────────────────────────────────────────────
     // Maps each finger's touchId to the lane it pressed, kept alive until release.
     private readonly Dictionary<int, int> touchLaneMap = new Dictionary<int, int>();
+
+    // ── UI lane panel hold tracking ────────────────────────────────────────────
+    // Maps EventSystem pointerId → lane index while a finger holds a lane panel.
+    // Populated by OnLanePanelDown, removed by OnLanePanelUp.
+    private readonly Dictionary<int, int> _panelPointerLaneMap = new Dictionary<int, int>();
 
     // ── lifecycle ──────────────────────────────────────────────────────────────
 
@@ -89,15 +95,38 @@ public class InputManager : MonoBehaviour
         {
             pointerHeldLane = -1;
             touchLaneMap.Clear();
+            _panelPointerLaneMap.Clear();
             return;
         }
 
-        // Use per-finger touch tracking on any device that has a touchscreen.
-        // Fall back to single-pointer (mouse) when no touchscreen is present.
+        // Re-apply held state from UI lane panels still active this frame.
+        foreach (var kvp in _panelPointerLaneMap)
+            if (kvp.Value >= 0 && kvp.Value < LaneHeld.Length)
+                LaneHeld[kvp.Value] = true;
+
+        // On Android at runtime, EventSystem lane panels handle all touch input.
+        // Raw Touchscreen.current is bypassed to prevent double-hits.
+        // The Editor and non-Android platforms always use raw touch/pointer as before.
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (Touchscreen.current != null)
+        {
+            if (LanePanelSetup.PanelsCreated)
+            {
+                if (showTapDebug) ConfirmRawTouchBypassed();
+            }
+            else
+            {
+                HandleTouchscreen();  // safety net: panels missing, fall back to raw touch
+            }
+        }
+        else
+            HandlePointer();
+#else
         if (Touchscreen.current != null)
             HandleTouchscreen();
         else
             HandlePointer();
+#endif
 
         HandleKeyboard();
     }
@@ -140,12 +169,13 @@ public class InputManager : MonoBehaviour
                         ? Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f))
                         : Vector3.zero;
 
-                    Debug.Log(
-                        $"[TapEvent] tapId={_currentTapId} frame={Time.frameCount} " +
-                        $"time={Time.time:F3} src=Touch " +
-                        $"screen=({screenPos.x:F0},{screenPos.y:F0}) " +
-                        $"world=({_lastTouchWorldPos.x:F3},{_lastTouchWorldPos.y:F3}) " +
-                        $"lane={lane}");
+                    if (showTapDebug)
+                        Debug.Log(
+                            $"[TapEvent] tapId={_currentTapId} frame={Time.frameCount} " +
+                            $"time={Time.time:F3} src=Touch " +
+                            $"screen=({screenPos.x:F0},{screenPos.y:F0}) " +
+                            $"world=({_lastTouchWorldPos.x:F3},{_lastTouchWorldPos.y:F3}) " +
+                            $"lane={lane}");
 
                     if (showTapDebug)
                         SpawnTapMarker(_lastTouchWorldPos, lane);
@@ -225,7 +255,8 @@ public class InputManager : MonoBehaviour
             if (keys[i].wasPressedThisFrame)
             {
                 _currentTapId = ++_tapCounter;
-                Debug.Log($"[TapEvent] tapId={_currentTapId} frame={Time.frameCount} time={Time.time:F3} src=Keyboard lane={i}");
+                if (showTapDebug)
+                    Debug.Log($"[TapEvent] tapId={_currentTapId} frame={Time.frameCount} time={Time.time:F3} src=Keyboard lane={i}");
                 HitReceptorController.Instance?.PulseReceptor(i);
                 HitLane(i);
             }
@@ -290,10 +321,11 @@ public class InputManager : MonoBehaviour
         {
             bool firstHit = _currentTapId != _lastTapTileHitId;
             _lastTapTileHitId = _currentTapId;
-            Debug.Log(
-                $"[TileHit] tapId={_currentTapId} tile={bestTile.name} " +
-                $"lane={laneIndex} frame={Time.frameCount} " +
-                $"dist={bestDist:F3} time={Time.time:F3} firstHit={firstHit}");
+            if (showTapDebug)
+                Debug.Log(
+                    $"[TileHit] tapId={_currentTapId} tile={bestTile.name} " +
+                    $"lane={laneIndex} frame={Time.frameCount} " +
+                    $"dist={bestDist:F3} time={Time.time:F3} firstHit={firstHit}");
             if (!firstHit)
                 Debug.LogWarning(
                     $"[TapDuplicate] tapId={_currentTapId} is consuming a 2nd tile " +
@@ -485,5 +517,88 @@ public class InputManager : MonoBehaviour
         tex.SetPixels(pixels);
         tex.Apply();
         return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), size);
+    }
+
+    // ── UI lane panel callbacks ────────────────────────────────────────────────
+    // Called by LanePanelInput. Each pointerId is tracked independently so one
+    // finger release never cancels another finger's held lane.
+
+    public void OnLanePanelDown(int laneIndex, int pointerId)
+    {
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsPaused) return;
+
+        // Guard: same pointer fired Down again without an intervening Up.
+        if (_panelPointerLaneMap.ContainsKey(pointerId))
+        {
+            Debug.LogWarning(
+                $"[PanelInput] pointerId={pointerId} Down again (lane={laneIndex} " +
+                $"frame={Time.frameCount}) — duplicate suppressed");
+            return;
+        }
+
+        _currentTapId = ++_tapCounter;
+        _panelPointerLaneMap[pointerId] = laneIndex;
+
+        if (showTapDebug)
+            Debug.Log(
+                $"[TapEvent] tapId={_currentTapId} frame={Time.frameCount} time={Time.time:F3} " +
+                $"src=UIPanel pointerId={pointerId} lane={laneIndex}");
+
+        if (laneIndex < 0 || laneIndex >= LaneHeld.Length) return;
+
+        HitReceptorController.Instance?.PulseReceptor(laneIndex);
+        HitLane(laneIndex, showTapDebug);
+    }
+
+    public void OnLanePanelUp(int laneIndex, int pointerId)
+    {
+        // Remove regardless of which lane the pointer mapped to (handles slide-off).
+        if (_panelPointerLaneMap.Remove(pointerId) && showTapDebug)
+            Debug.Log($"[PanelInput] pointerId={pointerId} up (lane={laneIndex} frame={Time.frameCount})");
+    }
+
+    // Debug-only: log that a finger exited a panel without releasing.
+    // Hold continues — the touch tracks the original panel until OnPointerUp.
+    public void OnLanePanelExit(int laneIndex, int pointerId)
+    {
+        if (showTapDebug)
+            Debug.Log($"[PanelInput] pointerId={pointerId} exited panel lane={laneIndex} frame={Time.frameCount} (hold continues)");
+    }
+
+    // ── focus / pause safety ───────────────────────────────────────────────────
+    // Any of these events clears stale held state so no touch remains "stuck".
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus) ClearAllHeldState();
+    }
+
+    void OnApplicationPause(bool paused)
+    {
+        if (paused) ClearAllHeldState();
+    }
+
+    void ClearAllHeldState()
+    {
+        touchLaneMap.Clear();
+        _panelPointerLaneMap.Clear();
+        pointerHeldLane = -1;
+        System.Array.Clear(LaneHeld, 0, LaneHeld.Length);
+        if (showTapDebug)
+            Debug.Log("[InputManager] Focus/pause lost — cleared all held input state.");
+    }
+
+    // Logs any raw touch events reaching InputManager on Android while panels are active,
+    // confirming that they are being bypassed and not reaching HitLane.
+    void ConfirmRawTouchBypassed()
+    {
+        foreach (var touch in Touchscreen.current.touches)
+        {
+            var phase = touch.phase.ReadValue();
+            if (phase == UnityEngine.InputSystem.TouchPhase.None) continue;
+            Debug.LogWarning(
+                $"[RawTouch] BYPASSED on Android: touchId={touch.touchId.ReadValue()} " +
+                $"phase={phase} frame={Time.frameCount} — UI panels are active, raw touch ignored.");
+        }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class MainMenuManager : MonoBehaviour
     public GameObject levelSelectPanel;
     [Tooltip("Drag SettingsPanel here.")]
     public GameObject settingsPanel;
+    [Tooltip("Drag StatsPanel here (replaces the old FunnyPanel).")]
+    public GameObject statsPanel;
+
+    [Header("Stats Panel Texts")]
+    [Tooltip("Text label that shows Level 1 high score inside StatsPanel.")]
+    public TextMeshProUGUI statsLevel1HSText;
+    [Tooltip("Text label that shows Endless best score inside StatsPanel.")]
+    public TextMeshProUGUI statsEndlessText;
 
     [Header("Main Menu Buttons")]
     [Tooltip("Opens the Level Select panel.")]
@@ -39,6 +48,12 @@ public class MainMenuManager : MonoBehaviour
     [Tooltip("Drag epic_stock_media-ui-button-heavy-button-press-metallic-333826 here.")]
     public AudioClip buttonClickClip;
 
+    [Header("Funny Panel — Static Audio")]
+    [Tooltip("Exact name of the static ambient clip in AudioManager.")]
+    public string staticClipName = "static";
+    [Range(0f, 1f)] public float staticNormalVolume = 0.04f;
+    [Range(0f, 1f)] public float staticFunnyVolume  = 0.10f;
+
     private AudioSource _sfxSource;
 
     void Start()
@@ -58,15 +73,42 @@ public class MainMenuManager : MonoBehaviour
         ShowPanel(mainMenuPanel);
         HidePanel(levelSelectPanel);
         HidePanel(settingsPanel);
-        LogWarnings();
+        HidePanel(statsPanel);
     }
 
     // ── Panel Navigation ────────────────────────────────────────────────────────
+
+    public void OpenStats()
+    {
+        HidePanel(mainMenuPanel);
+        HidePanel(levelSelectPanel);
+        HidePanel(settingsPanel);
+        SetStaticVolume(staticNormalVolume);
+        ShowPanel(statsPanel);
+        ChannelButton.NotifyChannelChanged(ChannelTarget.Stats);
+        PopulateStats();
+    }
+
+    void PopulateStats()
+    {
+        if (statsLevel1HSText != null)
+        {
+            int hs = PlayerPrefs.GetInt("HighScore_Level1", 0);
+            statsLevel1HSText.text = hs > 0 ? hs.ToString("N0") : "---";
+        }
+        if (statsEndlessText != null)
+        {
+            int best = PlayerPrefs.GetInt("EndlessBestScore", 0);
+            statsEndlessText.text = best > 0 ? best.ToString("N0") : "---";
+        }
+    }
 
     public void OpenLevelSelect()
     {
         HidePanel(mainMenuPanel);
         HidePanel(settingsPanel);
+        HidePanel(statsPanel);
+        SetStaticVolume(staticNormalVolume);
         ShowPanel(levelSelectPanel);
         ChannelButton.NotifyChannelChanged(ChannelTarget.Levels);
     }
@@ -74,6 +116,7 @@ public class MainMenuManager : MonoBehaviour
     public void BackToMainMenu()
     {
         HidePanel(levelSelectPanel);
+        HidePanel(statsPanel);
         ShowPanel(mainMenuPanel);
         ChannelButton.NotifyChannelChanged(ChannelTarget.Main);
     }
@@ -82,6 +125,8 @@ public class MainMenuManager : MonoBehaviour
     {
         HidePanel(mainMenuPanel);
         HidePanel(levelSelectPanel);
+        HidePanel(statsPanel);
+        SetStaticVolume(staticNormalVolume);
         ShowPanel(settingsPanel);
         ChannelButton.NotifyChannelChanged(ChannelTarget.Settings);
     }
@@ -89,6 +134,7 @@ public class MainMenuManager : MonoBehaviour
     public void BackFromSettings()
     {
         HidePanel(settingsPanel);
+        HidePanel(statsPanel);
         ShowPanel(mainMenuPanel);
         ChannelButton.NotifyChannelChanged(ChannelTarget.Main);
     }
@@ -97,6 +143,8 @@ public class MainMenuManager : MonoBehaviour
     {
         HidePanel(levelSelectPanel);
         HidePanel(settingsPanel);
+        HidePanel(statsPanel);
+        SetStaticVolume(staticNormalVolume);
         ShowPanel(mainMenuPanel);
         ChannelButton.NotifyChannelChanged(ChannelTarget.Main);
     }
@@ -175,6 +223,8 @@ public class MainMenuManager : MonoBehaviour
         cg.alpha = locked ? 0.35f : 1f;
     }
 
+    void SetStaticVolume(float v) => AudioManager.Instance?.SetAmbientVolume(staticClipName, v);
+
     void ShowPanel(GameObject panel) { if (panel != null) panel.SetActive(true); }
     void HidePanel(GameObject panel) { if (panel != null) panel.SetActive(false); }
 
@@ -188,18 +238,6 @@ public class MainMenuManager : MonoBehaviour
         if (level3Button  == null) level3Button  = FindButtonByName("Level3Button");
         if (level4Button  == null) level4Button  = FindButtonByName("Level4Button");
         if (backButton    == null) backButton    = FindButtonByName("BackButton");
-    }
-
-    void LogWarnings()
-    {
-        if (mainMenuPanel    == null) Debug.LogWarning("[MainMenuManager] mainMenuPanel not assigned.");
-        if (levelSelectPanel == null) Debug.LogWarning("[MainMenuManager] levelSelectPanel not assigned.");
-        if (settingsPanel    == null) Debug.LogWarning("[MainMenuManager] settingsPanel not assigned.");
-        if (levelsButton     == null) Debug.LogWarning("[MainMenuManager] LevelsButton not found.");
-        if (endlessButton    == null) Debug.LogWarning("[MainMenuManager] EndlessButton not found.");
-        if (settingsButton   == null) Debug.LogWarning("[MainMenuManager] SettingsButton not found.");
-        if (level1Button     == null) Debug.LogWarning("[MainMenuManager] Level1Button not found.");
-        if (backButton       == null) Debug.LogWarning("[MainMenuManager] BackButton not found.");
     }
 
     Button FindButtonByName(string n)

@@ -113,6 +113,13 @@ public class MainMenuUISetup : MonoBehaviour
         SetupButtonGlows();
     }
 
+    // Called by AntennaController each drag frame. t=0 = fully tuned, t=1 = fully detuned.
+    public void SetStaticIntensity(float t, float alphaMin, float alphaMax, float flickerMin, float flickerMax)
+    {
+        crtBaseAlpha       = Mathf.Lerp(alphaMin, alphaMax, t);
+        crtFlickerStrength = Mathf.Lerp(flickerMin, flickerMax, t);
+    }
+
     // Called by PowerButton when toggled. When on, flicker range is [0.9, 1.0].
     public void SetCRTPoweredOn(bool on)
     {
